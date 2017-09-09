@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
-timezone:
+title: 翁旺
+subtitle: the quieter you become, the more able you are to hear.
+description: something about me, something about everything.
+author: 翁旺
+language: zh
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://wengwang.me/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :category/:year-:month-:day-:title/
 permalink_defaults:
 
 # Directory
@@ -53,9 +53,19 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: uncategorized
-category_map:
+default_category: Talk
+category_map: 
+- Talk
+- Font-end
+- Travel
 tag_map:
+- HTML
+- CSS
+- JavaScript
+- NodeJs
+- React
+- Vue
+- meeting
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -76,5 +86,7 @@ theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type:
+deploy: 
+  type: git
+  repo: git@github.com:a044161/wengwang.me.git
+  branch: master
