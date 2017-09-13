@@ -7,6 +7,8 @@ categories:
 - Font-end
 ---
 
+[![](https://badge.juejin.im/entry/5966de11f265da6c332419e2/likes.svg?style=flat-square)](https://juejin.im/entry/5966de11f265da6c332419e2/detail)
+
 # 开篇闲扯
 
 最近因为在做自己的side project，又想回到了想以前那样，每做一些事情就会引发一些思考，个人觉得这篇文章写的有点打酱油，之后是希望自己能够应用起来之后，再做完整的一次分享。

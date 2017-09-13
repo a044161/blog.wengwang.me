@@ -66,6 +66,7 @@ tag_map:
 - React
 - Vue
 - meeting
+- UnitTest
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date

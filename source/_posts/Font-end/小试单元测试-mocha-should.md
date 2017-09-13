@@ -1,12 +1,16 @@
 ---
 title: 小试单元测试-mocha+should
 date: 2017-09-12 23:21:24
+photos: 
+- https://oss.wengwang.me/images/bg/mocha.png
 tags:
 - JavaScript
-- Unit Test
+- UnitTest
 categories: 
 - Font-end
 ---
+
+[![](https://badge.juejin.im/entry/59b80d51f265da066c22ebf0/likes.svg?style=flat-square)](https://juejin.im/entry/59b80d51f265da066c22ebf0/detail)
 
 github地址：[https://github.com/a044161/pocket-tool](https://github.com/a044161/pocket-tool)  
 

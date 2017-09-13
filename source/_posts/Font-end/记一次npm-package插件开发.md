@@ -1,11 +1,15 @@
 ---
 title: 记一次npm package插件开发
 date: 2017-09-12 23:21:46
+photos: 
+- https://oss.wengwang.me/images/bg/npm.jpg
 tags:
 - JavaScript
 categories: 
 - Font-end
 ---
+
+[![](https://badge.juejin.im/entry/59b80d41f265da06700abb0a/likes.svg?style=flat-square)](https://juejin.im/entry/59b80d41f265da06700abb0a/detail)
 
 github地址：[https://github.com/a044161/pocket-tool](https://github.com/a044161/pocket-tool)
 

@@ -1,12 +1,12 @@
 # basic
 title: Daily
 subtitle: Minimalism, simplicity and refined details
-favicon: https://hexo.io/icon/favicon-96x96.png
+favicon: https://oss.wengwang.me/images/ww_header.jpg
 
 # avatar: images/avatar.png
 # banner_small: images/banner-small.png
 # banner_large: images/banner-large.png
-# logo: https://hexo.io/logo.svg
+logo: https://oss.wengwang.me/images/ww_header.jpg
 
 # disqus
 #disqus_shortname: drakeleung
@@ -17,17 +17,16 @@ cnzz_analytics: true
 
 highlight:
   enable: true
-  line_number: false
+  line_number: true
   auto_detect: false
   tab_replace:
 
 # nav #
 nav:
-  home: .
-  archive: archives
-  about: about
-  resume: resume
-  # tag: tag
+  Home: .
+  Archive: archives
+  About: about
+  Resume: resume
   # rss: atom.xml
 
 # hexo-renderer-sass
