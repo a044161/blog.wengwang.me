@@ -12,6 +12,7 @@ before_install:
 - echo -e "Host $SSH_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - ls -l
+- ssh $SSH_USER@$SSH_IP 'rm $SERVER_PATH'
 - scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH
 env:
   global:

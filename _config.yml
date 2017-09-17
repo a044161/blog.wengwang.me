@@ -87,7 +87,4 @@ theme: _Daily
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy: 
-  type: git
-  repo: git@github.com:a044161/wengwang.me.git
-  branch: gh-pages
+# deploy: 
