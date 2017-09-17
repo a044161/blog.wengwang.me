@@ -7,12 +7,14 @@
         <div class="post-header">
           <h1 class="entry-title">
             <%- page.title || theme.default_post_title || "Untitled" %>
-            <% if (page.subtitle && page.subtitle.length) { %>
-              <p><%- page.subtitle %></p>
-            <% } %>
+              <% if (page.subtitle && page.subtitle.length) { %>
+                <p>
+                  <%- page.subtitle %>
+                </p>
+                <% } %>
           </h1>
           <p class="posted-on">
-          <%= page.date.format(config.date_format) %>
+            <%= page.date.format(config.date_format) %>
           </p>
           <div class="tags-links">
             <% if (page.tags) { %>
@@ -20,14 +22,15 @@
                 <a href="<%= config.root %>tags/<%= tag.name %>/" rel="tag">
                   <%- tag.name %>
                 </a>
-              <% }); %>
-            <% } %>
+                <% }); %>
+                  <% } %>
           </div>
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
           <%- page.content %>
         </div>
+
       </article>
     </div>
     <!-- Comments -->
@@ -42,12 +45,13 @@
         <div class="nav-previous">
           <a href="<%- config.root %><%- page.prev.path %>" rel="prev"><span class="meta-arraw meta-arraw-left"></span> <%- __('prev')%></a>
         </div>
-      <% } %>
-      <% if (page.next) { %>
-        <div class="nav-next">
-          <a href="<%- config.root %><%- page.next.path %>" rel="prev"><%- __('next')%> <span class="meta-arraw meta-arraw-right"></span></a>
-        </div>
-      <% } %>
+        <% } %>
+          <% if (page.next) { %>
+            <div class="nav-next">
+              <a href="<%- config.root %><%- page.next.path %>" rel="prev">
+                <%- __('next')%> <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            <% } %>
     </div>
 
   </div>

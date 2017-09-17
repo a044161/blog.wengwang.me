@@ -58,6 +58,7 @@ category_map:
 - Talk
 - Font-end
 - Travel
+- Others
 tag_map:
 - HTML
 - CSS
@@ -67,6 +68,9 @@ tag_map:
 - Vue
 - meeting
 - UnitTest
+- CI
+- Linux
+- Hexo
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date

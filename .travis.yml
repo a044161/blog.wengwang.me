@@ -1,19 +1,18 @@
-language: node_js
-node_js: stable
-sudo: true
-install:
-- npm install
+language: node_js # 设置语言为nodejs
+node_js: stable # 选择nodejs版本
+sudo: true # 开启管理员权限
+install: 
+- npm install # 安装依赖文件
 script:
-- hexo g
+- hexo g # 编译hexo
 before_install:
 - openssl aes-256-cbc -K $encrypted_9d99a4372840_key -iv $encrypted_9d99a4372840_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
+- chmod 600 ~/.ssh/id_rsa # 防止登录时的授权询问
 - echo -e "Host $SSH_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-- ls -l
-- ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'rm -f $SERVER_PATH'
-- scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH
+- ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'rm -f $SERVER_PATH' # 删除原目录，因为scp无法执行删除命名
+- scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH # 上传文件
 env:
   global:
   - secure: ttsHocVexihvvsI2ll/g8tzflk1Imm1ATQhoBGXp+Bz2tAYLp5mnXA/5br6H/fQG9nUhd5Sj8hgn5CgN19ShKeNFuSfp51bakM1lO4u5waNvWqkY/8au0RF9Ukm6TvYV3rIgOdGYzzDZPrUTj3+gNOxIf9/fov2M3NwnJ9d4wqff94iubBSvsmJIPp1SVECKmLIHTTlfrnTjStmTmO6bW9tygYNWAWALKzlroU0+t9JRItcGB9JISgDPLhk1K17z+0ZRj/qeiLQPoaKW+hONw8PWwZcjaiJ3aFl+5GRtd8EKZcDtwPewQvojNeBC4Ehy7h395C2v3tArPG0c4rxrKSx4OvA8djOyG0jHMVZhyeL232Q94ILxBbwKNXaPWvpt8jLgkm+daBuwCPchxbZrrKK+zfGznaWHdf2/iwF3GOcgbdc8/UtMdx/ALYIPXB8GbREqookgna/Q/JywMjzzIa2GyHFLPglNXRrNd34FiTn6Oc0qoT4PAItZ84dho0vBaWjIfh1qgut3ILlyqF/fQY/WihLjsC0frx0LVv5wzmLDvF8jxkkdyhvSE8ZGb23yMhKmvHU2y2H8PbfM3dnNEAYrXaYyXycDW3R76h6PImmjSlIpc7+pb7583VbrGjzR51mlBm0vYc/5w+0Ao8bXSuSuVHJDJ3IgG8KHsFcMUe8=
