@@ -11,6 +11,8 @@ categories:
 - Others
 ---
 
+[![](https://badge.juejin.im/entry/59be93ec5188255be81f7dee/likes.svg?style=flat-square)](https://juejin.im/entry/59be93ec5188255be81f7dee/detail)
+
 # 开篇闲扯
 上一周，不懂发生了什么误操作，导致我的服务器上的`mysql`跪了，然后通过快照进行恢复，本以为一切顺利，没想到数据库里面的数据全都乱码了，折腾了各种转码，还是不行，找到了一个可以测试各种编码结果的网站[乱码恢复](http://www.mytju.com/classcode/tools/messyCodeRecover.asp)，好在数据不多，通过很挫的手工方式进行一个个恢复。  
 
