@@ -12,7 +12,7 @@ before_install:
 - echo -e "Host $SSH_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - ls -l
-- scp -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH
+- scp -P $SSH_PORT -r ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH
 env:
   global:
   - secure: Kv46xqZhIdhcccska+EASPv/KJ5jGKPsXcI6vMtd6x/aVH2cWeyexn0nXEhXrWdlVQqYqS4MWOT2KqKb2MC8z18+/Nl6FjvAjTyXxcIxHQYkFfUpemlmSfPdwSn0AVAsFYoHADrOe5x4SrTHzi/EKwTqDAhR26DA9kHZYXubBbyad2KxHyMwotWZmsu0SoPh2ez9mWj+NqrXOmsavd+NlpcyfiJFVdD0NM69CkeoCi99FnFTWf+LaYeu5drxVtrsy/z5+nxgKeY7Vf9xdG/u6COPPLvOWy0QtcsgZHfzJvBB1hnuwmeXx7JAv5ZX1xibXT+FMJW58qNNIJfPLmUi3x8+TBHt6F45r2JyjAuxqNMXNEcZCuTiVr+DOr4eI1JQY/C4X+ocLcqgouDzF6nqsINp9DJWhwEIPLoUvGmyueTUfXw7Q7D5J0UfJnmOkohfdalRCzEzj0yg+xRizW3sLBn6tTG/uWOeyfY378AbY+rEpNlWpQyRzHkmkOXZfO5aHJ/Af/gf/gRFTC+up9zI91jS/wXQfeKNQWcqtgSYBTpMmPBsKAH9pJ6Jeb1zpnq22MGTubFRLNgrcMwDNr7TdE/s2Cb33Xl9b5ytU+ITYPAZDmzKkf7Fnzk8p/vh8W4Yq/i5iSKbvF9/NWfb+70JHW0VLFb1JPIPwpeBXVfUqTU=
