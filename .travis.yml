@@ -6,7 +6,7 @@ install:
 script:
 - hexo g
 before_install:
-- openssl aes-256-cbc -K $encrypted_ab95e6056835_key -iv $encrypted_ab95e6056835_iv
+- openssl aes-256-cbc -K $encrypted_9d99a4372840_key -iv $encrypted_9d99a4372840_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host $SSH_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
