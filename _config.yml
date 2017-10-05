@@ -92,3 +92,7 @@ theme: _Daily
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 # deploy: 
+
+# Sitemap Setting
+sitemap:
+  path: sitemap.xml
