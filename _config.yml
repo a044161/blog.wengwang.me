@@ -96,3 +96,5 @@ theme: _Daily
 # Sitemap Setting
 sitemap:
   path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

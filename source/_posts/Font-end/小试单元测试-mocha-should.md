@@ -1,10 +1,9 @@
 ---
 title: 小试单元测试-mocha+should
-date: 2017-09-12 23:21:24
-photos: 
-- https://oss.wengwang.me/images/bg/mocha.png
+date: 2017-07-09 23:55:00
 tags:
-- JavaScript
+- Mocha
+- Node.js
 - UnitTest
 categories: 
 - Font-end
