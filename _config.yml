@@ -71,6 +71,8 @@ tag_map:
 - CI
 - Linux
 - Hexo
+- Mocha
+- Phantomjs
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
