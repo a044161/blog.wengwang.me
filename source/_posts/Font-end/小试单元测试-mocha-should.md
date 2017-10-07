@@ -1,6 +1,8 @@
 ---
 title: 小试单元测试-mocha+should
 date: 2017-07-09 23:55:00
+photos:
+- https://oss.wengwang.me/images/bg/mocha.png
 tags:
 - Mocha
 - Node.js
