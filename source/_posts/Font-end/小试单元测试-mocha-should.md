@@ -11,8 +11,6 @@ categories:
 - Font-end
 ---
 
-[![](https://badge.juejin.im/entry/59b80d51f265da066c22ebf0/likes.svg?style=flat-square)](https://juejin.im/entry/59b80d51f265da066c22ebf0/detail)
-
 github地址：[https://github.com/a044161/pocket-tool](https://github.com/a044161/pocket-tool)  
 
 基于[记一次npm package插件开发](https://wengwang.me/Font-end/Font-end/记一次npm-package插件开发/)写的。

@@ -9,8 +9,6 @@ categories:
 - Font-end
 ---
 
-[![](https://badge.juejin.im/entry/59b80d41f265da06700abb0a/likes.svg?style=flat-square)](https://juejin.im/entry/59b80d41f265da06700abb0a/detail)
-
 github地址：[https://github.com/a044161/pocket-tool](https://github.com/a044161/pocket-tool)
 
 # 开篇闲扯
