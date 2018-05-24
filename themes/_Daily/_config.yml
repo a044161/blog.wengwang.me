@@ -24,10 +24,10 @@ highlight:
 # nav #
 nav:
   Home: .
+  LeetCode: leetcode
   Archive: archives
   About: about
   Resume: resume
-  # rss: atom.xml
 
 # hexo-renderer-sass
 node_sass:
