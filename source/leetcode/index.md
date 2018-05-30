@@ -16,3 +16,4 @@ categories:
 1. [两数之和](/leetcode/1.html)
 3. [无重复字符的最长子串](/leetcode/3.html)
 4. [两个排序数组的中位数](/leetcode/4.html)
+5. [最长回文子串](/leetcode/5.html)
