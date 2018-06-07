@@ -35,15 +35,11 @@
           <p>下面是我的微信</p>
           <p>欢迎骚扰</p>
           <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <p>当然你也可以选择分享我的这篇博文</p>
+          <img src="<%- qrcode(url, {size: 4}) %>" />
         </div>
 
       </article>
-    </div>
-    <!-- Comments -->
-    <div class="container">
-      <%- partial('_partial/comment', {
-          shortname: config.changyan_shortname
-        }) %>
     </div>
     <!-- Pre or Next -->
     <div class="nav-links">

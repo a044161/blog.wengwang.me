@@ -79,5 +79,3 @@ title: 简历
 * ReactJS、AngularJS 1.x、Vue
 * nodeJS
 * webpack、gulp
-
-<center><img src="http://wengwang.oss-cn-shanghai.aliyuncs.com/images/ww_wechat_qrcode.jpg" width="200px"/></center>
