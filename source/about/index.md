@@ -9,9 +9,8 @@ title: 关于我
 项目中使用过 Angular、Vue、React  
 喜欢研究工程化  
 从不迷恋框架  
-写过 pyhone  
-玩过 nodejs  
-专心想要巩固基础  
+玩过 pyhone  
+写过过 nodejs  
 我的 github：[@a044161](https://github.com/a044161)
 我的微博：[@爱拍照的小胖纸](http://weibo.com/wengwang)
 我的邮箱：wengwangjay@126.com

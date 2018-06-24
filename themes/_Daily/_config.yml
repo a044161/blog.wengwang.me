@@ -27,7 +27,7 @@ nav:
   LeetCode: leetcode
   Archive: archives
   About: about
-  Resume: resume
+  # Resume: resume
 
 # hexo-renderer-sass
 node_sass:
