@@ -76,6 +76,7 @@ tag_map:
 - Mocha
 - Phantomjs
 - 每天一小时
+- Data Vision
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
