@@ -2,11 +2,11 @@
 title: HTML5 录音的踩坑之旅
 date: 2017-12-17 19:37:32
 photos:
-- https://oss.wengwang.me/images/wengwang_me/hexo/Font-end/%E5%BD%95%E9%9F%B3-%E5%8D%A1%E9%80%9A.jpg
+- https://oss.wengwang.me/images/wengwang_me/hexo/Front-end/%E5%BD%95%E9%9F%B3-%E5%8D%A1%E9%80%9A.jpg
 tags:
 - HTML5
 categories:
-- Font-end
+- Front-end
 ---
 
 # 开篇闲扯

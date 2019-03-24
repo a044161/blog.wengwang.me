@@ -6,7 +6,7 @@ photos:
 tags:
 - JavaScript
 categories: 
-- Font-end
+- Front-end
 ---
 
 github地址：[https://github.com/a044161/pocket-tool](https://github.com/a044161/pocket-tool)
@@ -107,7 +107,7 @@ export default {
 # 单元测试
 
 这里使用`mocha`+`should`  
-详见：[https://wengwang.me/Font-end/Font-end/小试单元测试-mocha-should/](https://wengwang.me/Font-end/Font-end/小试单元测试-mocha-should/)
+详见：[https://wengwang.me/Front-end/Front-end/小试单元测试-mocha-should/](https://wengwang.me/Front-end/Front-end/小试单元测试-mocha-should/)
 
 # 调用方式
 

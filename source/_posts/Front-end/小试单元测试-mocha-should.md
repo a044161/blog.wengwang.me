@@ -8,12 +8,12 @@ tags:
 - Node.js
 - UnitTest
 categories: 
-- Font-end
+- Front-end
 ---
 
 github地址：[https://github.com/a044161/pocket-tool](https://github.com/a044161/pocket-tool)  
 
-基于[记一次npm package插件开发](https://wengwang.me/Font-end/Font-end/记一次npm-package插件开发/)写的。
+基于[记一次npm package插件开发](https://wengwang.me/Front-end/Front-end/记一次npm-package插件开发/)写的。
 
 # 开篇闲扯
 

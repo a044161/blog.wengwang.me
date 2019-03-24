@@ -4,7 +4,7 @@ date: 2016-01-22 01:55:03
 tags:
 - React
 categories: 
-- Font-end
+- Front-end
 ---
 
 # 开篇闲扯
