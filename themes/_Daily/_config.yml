@@ -24,7 +24,8 @@ highlight:
 # nav #
 nav:
   Home: .
-  LeetCode: leetcode
+  # LeetCode: leetcode
+  Daily: daily
   Archive: archives
   About: about
   # Resume: resume
