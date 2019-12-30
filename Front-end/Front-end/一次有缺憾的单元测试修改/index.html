@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="一次有缺憾的单元测试修改">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                一次有缺憾的单元测试修改 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            一次有缺憾的单元测试修改
+              
+          </h1>
+          <p class="posted-on">
+            2017-10-05
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Mocha/" rel="tag">
+                  Mocha
+                </a>
+                
+                <a href="/tags/Node.js/" rel="tag">
+                  Node.js
+                </a>
+                
+                <a href="/tags/UnitTest/" rel="tag">
+                  UnitTest
+                </a>
+                
+                <a href="/tags/Phantomjs/" rel="tag">
+                  Phantomjs
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>本来是想要对<a href="https://www.npmjs.com/package/pocket-tool" target="_blank" rel="noopener">pocket-tool</a>进行功能增强的，增加链式写法，不过随便用了一下之前的功能就出现了bug，这是才想起来之前针对<code>DOM</code>操作的单元测试还没写，这次就干脆先把这部分的单元测试给补上，的确是补上了，但是还有一些遗憾，接下来会先对这次<code>DOM</code>模块的单元测试进行思路分析，然后再说一下缺憾有哪些。</p>
+<a id="more"></a>
+<h1><span id="xian-cong-xu-qiu-kai-shi">先从需求开始</span></h1><p>要对<code>DOM</code>进行单元测试，最基本的一个需求就是要获取<code>document</code>对象，但是<code>mocha</code>运行在<code>node</code>环境中，在<code>node</code>中并没有<code>document</code>对象，所以要从获取<code>document</code>开始，我一开始想的是应该有某位大神已经在<code>node</code>中实现了该特性。于是我就顺着这个思路查找了几个。</p>
+<ol>
+<li><a href="https://github.com/tmpvar/jsdom" target="_blank" rel="noopener">jsdom</a></li>
+<li><a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="noopener">cheerio</a></li>
+<li><a href="https://github.com/mochajs/mocha" target="_blank" rel="noopener">mocha - browser support</a></li>
+<li><a href="https://github.com/ariya/phantomjs" target="_blank" rel="noopener">phantomjs</a></li>
+</ol>
+<p>找到这四个的途径分别是通过阅读官方文档，比如<code>mocha</code>，还有就是看各个开源项目的<code>test</code>，比如<code>jquery</code>，还有一个是自己用过的<code>cheerio</code>。其中有个比较遗憾的就是，看到<code>jquery</code>的<code>test</code>时，只是简单的扫一眼，或者直接去找他们是如何获取<code>document</code>的，一直把他们的运行模式给忽略了，发现最后也是运行在浏览器端的。<br>接下来要对这四者进行简单的介绍。</p>
+<h1><span id="zai-dui-gong-neng-jin-xing-fen-xi">再对功能进行分析</span></h1><h2><span id="jsdom">jsdom</span></h2><p>官方的介绍是 <em>A JavaScript implementation of the WHATWG DOM and HTML standards, for use with node.js</em> 大概就是指：一个为我们提供在<code>node.js</code>上贯彻<code>WHATWG DOM</code>和<code>HTML</code>标准的<code>Javascript</code>。<a href="https://baike.baidu.com/item/WHATWG/5803339?fr=aladdin" target="_blank" rel="noopener">WHATWG</a>是一个组织，貌似看着好像是我所需要的，再接着看<code>API</code>的调用方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jsdom = <span class="built_in">require</span>(<span class="string">"jsdom"</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; JSDOM &#125; = jsdom;</span><br></pre></td></tr></table></figure>
+<p>诶，好像有点样子，再接着看</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dom = <span class="keyword">new</span> JSDOM(<span class="string">`&lt;!DOCTYPE html&gt;&lt;p&gt;Hello world&lt;/p&gt;`</span>);</span><br><span class="line"><span class="built_in">console</span>.log(dom.window.document.querySelector(<span class="string">"p"</span>).textContent); <span class="comment">// "Hello world"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="built_in">window</span> &#125; = <span class="keyword">new</span> JSDOM(<span class="string">`...`</span>);</span><br><span class="line"><span class="comment">// or even</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="built_in">document</span> &#125; = (<span class="keyword">new</span> JSDOM(<span class="string">`...`</span>)).window;</span><br></pre></td></tr></table></figure>
+<p>是通过传入一段<code>HTML</code>字符串，然后生成一个实例。到这里为止，好像并不能满足我的需求，我不能将<code>window</code>注入到我的项目中，因为这其实是一个伪造的，所以获取到的节点对象，可能并不是真正的<code>document</code>对象，这会影响我最终的测试。所以，只能放弃了。</p>
+<h2><span id="cheerio">cheerio</span></h2><p>官方的描述是<em>Fast, flexible, and lean implementation of core jQuery designed specifically for the server.</em>其实和<code>jsdom</code>差不多，只不过这个是以<code>jQuery</code>为核心的，也就是说可以通过<code>jQuery</code>的操作方式进行取值。再看看<code>API</code>的调用方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>)</span><br><span class="line"><span class="keyword">const</span> $ = cheerio.load(<span class="string">'&lt;h2 class="title"&gt;Hello world&lt;/h2&gt;'</span>)</span><br><span class="line"></span><br><span class="line">$(<span class="string">'h2.title'</span>).text(<span class="string">'Hello there!'</span>)</span><br><span class="line">$(<span class="string">'h2'</span>).addClass(<span class="string">'welcome'</span>)</span><br><span class="line"></span><br><span class="line">$.html()</span><br><span class="line"><span class="comment">//=&gt; &lt;h2 class="title welcome"&gt;Hello there!&lt;/h2&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其实和<code>jsdom</code>是差不多，好吧，也无法满足我的需求，不过我用过它开发过一个对没有用的<code>class</code>进行筛查的工具，写的太烂，功能没有进行跟进，我这就不贴出来了，哈哈。还是很好用的。<br>通过上面<code>jsdom</code>和<code>cheerio</code>的了解可以发现，其实并不能使用一个模拟的<code>document</code>对象，而是要真正的<code>document</code>对象，于是将思路再转移到了浏览器端。</p>
+<h2><span id="mocha-browser-support">mocha - browser support</span></h2><p>我又回到了看<code>mocha</code>的<a href="https://mochajs.org/" target="_blank" rel="noopener">官方网站</a>，这时发现了<code>Mocha can also be installed via Bower (bower install mocha), and is available at cdnjs.</code>，还有<code>Mocha runs in the browser. Every release of Mocha will have new builds of ./mocha.js and ./mocha.css for use in the browser.</code>这就说明了，<code>mocha</code>可以运行在浏览器上，那我其实就不需要在<code>node</code>环境中运行<code>mocha</code>了，只需要写完之后，运行在浏览器上就好了，具体的使用方式就是，引入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>鉴于我们国内的情况，还是通过<code>bower</code>进行安装一下上面的几个工具吧<code>jquery</code>、<code>mocha</code>，我用的断言库是<code>should</code>，自行选择喜欢的就好了。然后再加入<code>mocha</code>的方法，还有测试单元的<code>js</code>文件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mocha"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">mocha.setup(<span class="string">'bdd'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.array.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.object.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.xhr.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    mocha.checkLeaks();</span></span><br><span class="line"><span class="javascript">    mocha.globals([<span class="string">'jQuery'</span>]);</span></span><br><span class="line"><span class="undefined">    mocha.run();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里都是官方的调用方式，我自己的也差不多，还是看官方的更加清晰一些，当你全部配置完成后，打开<code>html</code>文件就好了，这是就能看见类似这样的页面<br><img src="https://oss.wengwang.me/images/wengwang_me/hexo/Front-end/1.png" alt="https://oss.wengwang.me/images/wengwang_me/hexo/Front-end/1.png"><br>说明成功运行起来，ok，这样就能对有<code>document</code>的功能进行单元测试了，但是，这还不行，如果我要加入<code>CI</code>的话，要怎么在命令行中运行，并且当不通过时退出呢？这时我就继续摸索，于是找到了<code>phantomjs</code>，虽然之前就听说过，但是没有用过，这时就派上用场了。</p>
+<h2><span id="phantomjs">phantomjs</span></h2><p>根据官方的描述<em>PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.</em>吧啦吧啦，其实就像一个没有页面的浏览器，其实还有很多强大的功能，我还没探索，有兴趣的同学可以到它们的<a href="http://phantomjs.org/" target="_blank" rel="noopener">官方网站</a>看看这里先暂时借个壳，当然有这个还是不够的，因为运行起来还只是运行了一下，没有任何反应，不会因为某个用例不通过时断开以及抛出错误，这时还要再借助<a href="https://github.com/nathanboktae/mocha-phantomjs-core" target="_blank" rel="noopener">mocha-phantomjs-core</a>。<br>ok，万事具备了，接下来开始整合。</p>
+<h1><span id="zui-hou-jin-xing-zheng-he">最后进行整合</span></h1><p>先把需要的东西安装一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bower install mocha should.js --save-dev <span class="comment">// 安装mocha和should端断言库</span></span><br><span class="line"></span><br><span class="line">npm install phantomjs -g <span class="comment">// 全局安装 phantomjs</span></span><br><span class="line">npm install mocha-phantomjs-core -D <span class="comment">// 安装mocha-phantomjs-core</span></span><br></pre></td></tr></table></figure>
+<p>这时创建一个<code>index.html</code>，再把需要的工具引入一下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>DOM DEMO<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"../../bower_components/mocha/mocha.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mocha"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../../bower_components/should.js/should.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../../bower_components/mocha/mocha.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../../bower_components/jquery/dist/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 这是我想要测试的脚本 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../../dist/pocket-tool.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这是我想要测试的脚本 --&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        mocha.setup(<span class="string">'bdd'</span>) <span class="comment">// 使用bdd的方式</span></span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 这是我的用例 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/getElement.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/addClass.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/removeClass.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/on.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/off.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/getDataSet.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./test/chain.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- /这是我的用例 --&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        mocha.run();</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>入口搞定了，单元测试用例的写法都和<code>mocha</code>的一样，如果想要支持<code>es6</code>的方法，只要再引入<code>babel-polyfill</code>就好了。这些都搞定后，就是要如何运行了，先在命令行中进行一下测试<code>phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js ./test/phantomjs/index.html spec &#39;{\&quot;useColors\&quot;:true}&#39;</code>， 通过<code>mocha-phantomjs-core</code>的方式进行运行后面的<code>index.html</code>，一切顺利的就能看到<br><img src="https://oss.wengwang.me/images/wengwang_me/hexo/Front-end/2.png" alt="https://oss.wengwang.me/images/wengwang_me/hexo/Front-end/1.png"><br>这一切又是那么的熟悉。这时再到<code>package.json</code>的<code>script</code>添加一下就好<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">	"test:phantomjs": "phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js ./test/phantomjs/index.html spec '&#123;\"useColors\":true&#125;'",</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1><span id="zhe-ci-de-que-han">这次的缺憾</span></h1><p>因为我的项目中有两个部分，一个是在<code>nodejs</code>中使用<code>mocha</code>一个是在<code>phantomjs</code>，想要把这两者做一个结合，这样方便<code>CI</code>于是我有找到了<code>karma</code>但是好难整合，不知道是不是我的姿势不对，最后还是使用<code>package.js</code>的<code>script</code>进行结合</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "test": "npm run test:mocha &amp;&amp; npm run test:phantomjs",</span><br><span class="line">	"test:mocha": "npm run dist &amp;&amp; mocha test/mocha",</span><br><span class="line">	"test:phantomjs":"phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js ./test/phantomjs/index.html spec '&#123;\"useColors\":true&#125;'"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果和我想要的一样，但是还要加入覆盖率统计，这时就蛋疼了，这里我使用了<code>istanbul</code>，对运行在<code>nodejs</code>上的可以使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">istanbul cover _mocha test/mocha<span class="string">"</span></span><br></pre></td></tr></table></figure></p>
+<p>但是在<code>phantomjs</code>中的就有点麻烦了，虽然有<code>mocha-phantomjs</code>+<code>mocha-phantomjs-istanbul</code>，但是貌似<code>mocha-phantomjs-istanbul</code>并不生效，感觉这有点繁琐了，想要找个办法，将两个方案进行整合。</p>
+<h1><span id="jie-yu">结语</span></h1><p>这次还算可以，只是运行在<code>phantomjs</code>上的无法计算覆盖率，还有就是没有通过<code>karam</code>将两个进行整合，看来之后再继续一段单元测试之路了，之前我觉得单元测试没有什么必要，但是在这次中是对工具进行功能上的升级，就庆幸之前有写了单元测试，这样就不怕有严重的影响了。对了，希望有好的方案的同学，可以通过留言跟我一起谈论一下。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACfklEQVR42u2a227DMAxD+/8/ne1lwJBa4pGDDphJvwxtLj0ZKlck9Xo16/pe99c/7123dT/++/rqePU5oxXIIyGvxaouXkGsQKrX9Ny3BwqkHeQKRN24uk6drwpsyRXIQDZAZJOvjlebfCADOS2cFYxqEDqIj1R3II+C7Dbd+w2r96pzVBPxuAsK5HGQSoj91d9HajGQx0Bew1VdTwqGmAzLzwykFWRnJHWb88SUIk2JMiUC6QNJv9AUnDQf6j5v9w2kJWRnBBChpKA7OGWyBtILkn7BlRDbbZjpZh9IP0glxJTYp6FVd/yxORDIIyCpeU83b6rnu4ZbOmqBPB5yKqRISEQDLAIcyEASg580tpOAqTXDAmkHSQwAEiZNinDi3QfSC3JXsFPDgFyDG41AWkBOmgUyCKoG7qgifBNigbSBpIY+3djJsIgKmZb/hEDaQZLNmAROXehEDNvSoAikDaQSVyQAkKm/AJFFGkgrSCXuJ42tGljqzpMFG0g7SGVaTYdHlNinAWsgfSEn4ogMkkyHosapWCCPhewMUdXUEtOVhldtcQXSCpKIdCqwSGHQH4nW5Q3k8ZBquO3JFBQxstBQXyCtIGkDQb74O6YrMWED6Qc5CYZ2w3j1IAo8kF6QkyLZMfgnDXM7WBJIG0gaGqnC2b2HTMQCaQs5MTonw3M0pEeVHcijIYkJj5xY8BBUnC0H6gJpA0mrqzt5MrykQlGpFgNpAUkFFxkCVYWjGmNkVAXSArILgybGPe5owKDTclAkkIEE4dPOjwAxE5bTLIG0h5QuFzREiRfaFlYg7SC7YJwGnrRBmZpagfSDpEKMGFV0IE8Jsm21GMj/DvkFRdpefe/A9EYAAAAASUVORK5CYII=" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Front-end/Front-end/体验一下链式写法/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Others/Others/从GHOST迁移到HEXO（引入-Travis-CI）/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

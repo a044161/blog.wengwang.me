@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="git 分支约束以及 git 提交约束">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                git 分支约束以及 git 提交约束 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            git 分支约束以及 git 提交约束
+              
+          </h1>
+          <p class="posted-on">
+            2018-06-24
+          </p>
+          <div class="tags-links">
+            
+              
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="fen-zhi-yue-shu">分支约束</span></h1><p>可以分为3种类型的分支：主分支、开发分支和临时性分支</p>
+<a id="more"></a>
+<h2><span id="master-fen-zhi-zhu-fen-zhi">master 分支 - 主分支</span></h2><p>必须有且仅有一个的分支，是正式版本或者真正提供给用户使用的正式版本，都在该分支上。</p>
+<h2><span id="develop-fen-zhi-kai-fa-fen-zhi">develop 分支 - 开发分支</span></h2><p>日常的开发都在 develop 分支上进行。<br>当开发完成，需要发布到正式版本的时候需要和 master 进行合并。</p>
+<h2><span id="lin-shi-xing-fen-zhi">临时性分支</span></h2><p>分为3种类型：feature 分支 - 功能分支；release  分支 - 预发布分支；fixbug 分支 - 修补 bug 分支。<br>上述的分支都为临时性的，使用建议做合并、删除操作，尽量保证仓库只保留 master 分支和 develop 分支。</p>
+<h3><span id="feature-fen-zhi-gong-neng-fen-zhi">feature 分支 - 功能分支</span></h3><p>在 develop 分支上进行开发的时候，有时需要临时增加新的功能，但是又不想影响当前的 develop 分支，因此，可以选择基于 develop 分支重新拉取一条 feature 分支进行开发，开发完成后再并入 develop 分支。<br>命名方式 <code>feature-*</code></p>
+<h3><span id="release-fen-zhi-yu-fa-bu-fen-zhi">release 分支 - 预发布分支</span></h3><p>在将要发布到正式版本之前，可以选择基于 develop 分支拉取 release 分支进行预发布，对功能进行走查，测试等，但 release 分支验证通过后，可合并到 matser 分支进行发布。如果这个时候发现问题，建议统一在 develop 分支上进行修复，然后再合并到 release 分支上。<br>命名方式 <code>release-*</code></p>
+<h3><span id="fixbug-fen-zhi-xiu-bu-bug-fen-zhi">fixbug 分支 - 修补 bug 分支</span></h3><p>发布到正式版本后会出现 bug，这时需要基于 master 分支拉取一个 fixbug 分支用来修补 bug，修补 bug 完毕后再合并 master 和 develop 分支。<br>命名方式 <code>fixbug-*</code></p>
+<h2><span id="tag-da-biao-qian">tag - 打标签</span></h2><p>一般是用在发布后，再对应的提交上打上标签，用于记录该提交是针对 <code>xx</code> 版本发布。  </p>
+<p><code>git tag 1.0.0</code></p>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="noopener">Git 分支管理策略</a><br><a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="noopener">创建标签</a>  </p>
+</blockquote>
+<h1><span id="ti-jiao-yue-shu">提交约束</span></h1><p>拥有好的 commit message 和 change log 对追溯是很有帮助的</p>
+<h2><span id="commit-message-bian-xie">commit message 编写</span></h2><p>可以使用 angular 开发团队的编写规范，将 commit message 分为三个部分：Header、Body 和 Footer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">// 空一行</span><br><span class="line">&lt;body&gt;</span><br><span class="line">// 空一行</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+<h3><span id="header">Header</span></h3><ul>
+<li>type：说明 commit 的类别，包含下面几个标识</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">feat：新功能（feature）</span><br><span class="line">fix：修补bug</span><br><span class="line">docs：文档（documentation）</span><br><span class="line">style： 格式（不影响代码运行的变动）</span><br><span class="line">refactor：重构（即不是新增功能，也不是修改bug的代码变动）</span><br><span class="line">test：增加测试</span><br><span class="line">chore：构建过程或辅助工具的变动</span><br></pre></td></tr></table></figure>
+<ul>
+<li>scope：影响范围</li>
+<li>subject：简短藐视，不超过50个字符</li>
+</ul>
+<h3><span id="body">Body</span></h3><p>对本次提交的详细描述</p>
+<h3><span id="footer">Footer</span></h3><ul>
+<li>不兼容变动</li>
+<li>关闭 Issue</li>
+</ul>
+<p>可以使用 <a href="https://github.com/commitizen/cz-cli" target="_blank" rel="noopener">commitizen</a> 编写 commit log 以及 <a href="validate-commit-msg">validate-commit-msg</a> 校验是否符合格式</p>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html" target="_blank" rel="noopener">Commit message 和 Change log 编写指南</a><br><a href="https://www.jianshu.com/p/00c9ec4e552e" target="_blank" rel="noopener">Commit Message &amp; Change Log</a></p>
+</blockquote>
+<p>其实定义一些规范，可能刚开始的时候会比较麻烦，但是在多人协作中是很有必要的，可以避免各种各样的情况发生。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAACJElEQVR42u2ay1LEMAwE8/8/Ha6ssdRjB6oyZnyB3SR2hxJ6jHRdzbqHNV6b/T5+9/3Zaq+lFSgLqHuyxg0Jtjp8hO/u+zgrUPZQlZF2htsZfPdis/1/fA7U0VAVyAp09Q8RqP8J1QXbyqlSYA7U+VBVkN3JwargS4E7UOdAdQf/5c/taiZQr4a6YXVGWxkuXcMzA2UNRYGXkjICUcSS2bOB8oXqxIju8DI5axJHuXgIlDWUKqwqhWXrDEGEu+htA2UFpQhbikhPoi0lfNNqJlCWUKpDUwWxVUeLBUSg7KBI2KLCQWk6KUXEx96BsoYiJ0aFQAdKCV+bSAbKEorECdkoG+GDBLNS3AiULRQFSUrmFKNfaTwFyh9qJelTCkxqRmJjKVDWUB3ETsGpCrOSIBcoWyga6FOENGWfpeGLQNlCUaHYGbRaFFDi1zaMAmUHteoA1eEHReBAcTdQtlAd7YpzfKIEo5IXKDsoZXiGBkvVoE5N70D5QykivAKvDEXQYHOgzoOivH1VSKPhLmnSOlB2UOqQKImvNERB51zqFFigbKCU5K67RxV0KTkM1BlQNIBFzk4x5l+pZgL1eqinByoDhsqzqLYEygZKGR5UC4OdIoIaVIHyhCIDp8SOGpRbhh4oeyjVASqiWgenNDIDdT7Uk4EcRSQpRdhAHQuFYoQ4GCGpd4E6BkrtgK80jZSXKP84gbKGUgLlzjUaqtguRgP1Zqgv37vJaaKRYhkAAAAASUVORK5CYII=" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Talk/Talk/一份迟来的总结/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Translation/Translation/面向用户界面开发的未来（The-Present-Future-of-User-Interface-Development）/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

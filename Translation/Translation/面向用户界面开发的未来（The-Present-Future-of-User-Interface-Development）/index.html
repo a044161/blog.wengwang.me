@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="面向用户界面开发的未来（The Present Future of User Interface Development）">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                面向用户界面开发的未来（The Present Future of User Interface Development） - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            面向用户界面开发的未来（The Present Future of User Interface Development）
+              
+          </h1>
+          <p class="posted-on">
+            2018-06-06
+          </p>
+          <div class="tags-links">
+            
+              
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p><strong>文章并非通篇翻译，而是进行了摘要，有兴趣的小伙伴建议直接阅读原文，有什么好的建议，或者不对的地方，欢迎留言或者@我</strong></p>
+<p>原文链接：<a href="https://hackernoon.com/the-present-future-of-user-interface-development-ebd371255175" target="_blank" rel="noopener">https://hackernoon.com/the-present-future-of-user-interface-development-ebd371255175</a>  </p>
+<hr>
+<h1><span id="zuo-zhe-kai-pian-balabala">作者开篇balabala</span></h1><p>简单来说，新的事物还没出现，目前的一些东西在人们看来就是最好的，我们不能停下脚步，要一直探索新的事物。<br>类似 React 这类的现代前端框架。</p>
+<a id="more"></a>
+<h1><span id="yao-kan-jian-zheng-pian-sen-lin-er-bu-shi-zhi-you-shu-mu-the-forest-not-the-trees">要看见整片森林，而不是只有树木（The forest, not the trees）</span></h1><p>这节作者想要表述的要看见 React 真正为我们带来的是什么（UI与状态的同步、JSX），而不是只看到其中的一个点。</p>
+<p>React 当时第一次宣布的宣传亮点是：可以通过声明式的语法来将程序的表现层与底层 DOM 进行分离，同时也能应对 DOM 的变化。这点与跨技术边界（HTML、JavaScript、CSS）进行分离的想法是相违背的，为了创建高内聚和低外部耦合的程序，我们将 UI 的表现、行为和状态都放在了一个 JavaScript 文件内，因此 React 使用语法拓展来实现这一特性，也就是 JSX。<br>虽然 JSX 刚开始的时候被各种嫌弃（包括我），没人愿意被指说其核心思想是错的。因此，在各种吹 React 多么创新的时候，JSX 这个 React 的核心属性常常会被人遗忘。</p>
+<h1><span id="react-shi-yi-ge-zu-jian-hua-de-ping-tai-react-is-a-component-platform">React 是一个组件化的平台（React is a Component platform）</span></h1><p>React 的核心是它的组件化。虚拟 DOM 是一项很酷的技术，但是假如没有虚拟 DOM，React 是也可被创建出来的。JSX 虽然是一个很取巧的 hack，但它也只是一个语法糖。<br>到了现在，组件化的概念已经很成熟了，而且在 React 之前就已经出现了。React 并不是发明了组件化这个概念，而是找到了一个正常的使用方式。<br>React 中的组件更多的是关于组合和封装，另外，这也是得益于函数式和多功能性。</p>
+<h2><span id="ke-zu-he-xing-composability">可组合性 （Composability）</span></h2><p>可组合性给我们带了从程序的小模块开始一步步构建大程序的便利性。让完整的大程序通过小模块进行组合。这些小模块都是相互独立，各自的代码都可以编写、修改、增加、删除。</p>
+<h2><span id="feng-zhuang-encapsulation">封装（Encapsulation）</span></h2><p>将组件的展示、状态和行为进行封装。这样能够使得组件不受外部代码的影响。</p>
+<h2><span id="han-shu-shi-functional">函数式（Functional）</span></h2><p>遵循函数式的编程风格，传入 props，返回一个 render。这样的方式可以使得组件更为健壮，更好理解。其它开发人员在使用时不需要关心它内部的运行机制。</p>
+<h2><span id="duo-yong-tu-multi-purpose">多用途（Multi-purpose）</span></h2><p>组件具有多种用途，比如可以作为视图组件、容器组件。优雅的组件中的API是可以剥离的，而且同时又具有组合性和封装性。</p>
+<p>这种小而美的组件，给我们带来了所有想要的东西：易于学习、记忆、符合使用习惯，并且易于维护和协作开发。  </p>
+<h1><span id="zu-jian-shi-yi-chong-yuan-shi-ji-zhu-chuang-xin-components-are-an-innovation-primitive">组件是一种原始技术创新（Components are an Innovation Primitive）</span></h1><p>虽然作者开头称赞了 React ，但是作者觉得虽然 React 的核心团队一直在努力开发，一些新的想法不断被提出、遗弃，以及各种设计模式的提测，但是放眼望去 React 的生态圈，还是不够完美。<br>作者应该是觉得 React 的最佳实践的方式还未被提出，一直在讨论要用高阶组件、渲染 Props等等何种方式来开发组件。  </p>
+<p>虽然 React 的配置丰富到令人有时感到厌烦，但是这就是 React 组件的强大所在。通过编写通用、颗粒小、可组合的、灵活性高、可靠性高的组件，使得我们可以在不放弃现有的工作时，不断的讨论、验证和接受新的想法。</p>
+<p>现在有各种各样的库，而且我们开发人员可以在不改变原来代码的情况下使用这些库。  </p>
+<p>一些库是独立于 React 的存在，在 React 之外处理着更加负责的事情，类似 <code>Redux</code>，因此，React 组件模型，不仅是用户界面开发的原始技术，更像一种原始技术的创新。</p>
+<p>与 JavaScript 的渐进式开发不同，React 可以在替换新的工具后重新适配原来的代码。和之前的框架（Ember、Angular）不同，React 在大的冲击下，依然可以保证不受破坏。</p>
+<h1><span id="wei-yi-bu-bian-de-shi-bian-hua-change-is-the-only-constant">唯一不变的是变化（Change is the only constant）</span></h1><p>拥有一个自适应的平台是很重要的，因为变化带来的代价实在是太大了。  </p>
+<p>当变化来临的时候，最好希望自己的系统可以适应这种变化，因为如果你的系统别无选择的话，那就悲剧了。  </p>
+<p>如果说某一项工具阻碍了进步，那么我们将会抛弃他们，继续前进。变革带来的代价是巨大的。我们要专注于将要创造的产品。</p>
+<h1><span id="bian-ge-shi-bu-ke-bi-mian-de-revolutions-are-inevitable">变革是不可避免的（Revolutions are inevitable）</span></h1><p>创新的进程会经历两个阶段：</p>
+<ol>
+<li>爆发性的增长</li>
+<li>很长的增量细化过程</li>
+</ol>
+<p>变革的速度会很快，但是提炼会很慢  </p>
+<p>React 是一场变革，在一夜之间颠覆了之前的思路，改变了我们开发者的体验。现在我们正常不断的优化它，直到无法有更多的优化点。  </p>
+<p>我们要不断的创新和创造，知道我们开发者的觉得能够保证我们的生态系统去适应改变。</p>
+<h1><span id="bian-xie-yi-ge-xiang-ying-shi-de-ruan-jian-let-s-write-software-that-s-responsive-to-change">编写一个响应式的软件（Let’s write software that’s responsive to change）</span></h1><p>我们可以从 React 的生态种吸取经验，让我们的代码受到冲击时，是弯曲，而不是被折断。</p>
+<h2><span id="cong-xiao-zuo-qi-build-big-things-from-small-things">从小做起（Build big things from small things）</span></h2><p>从更小的单元开始编写。认真思考将要定义的 APIs 和接口，以便他人使用。</p>
+<h2><span id="rang-dai-ma-yi-fu-zhi-he-shan-chu-dan-shi-bu-yi-bei-gai-bian-make-code-easy-to-copy-and-delete-not-easy-to-change">让代码易复制和删除，但是不易被改变（Make code easy to copy and delete, not easy to change）</span></h2><p>优秀的代码，应该是可以被很好的继承和组合的。将代码封装好，让封装后的代码只做一件事。</p>
+<h2><span id="mian-xiang-chi-zhi-bian-cheng-write-code-for-humans-first">面向离职编程（Write code for humans first）</span></h2><p>写好代码的命名、注释和文档等，这样能够使你的代码让更多的人都读懂和看懂</p>
+<h2><span id="jin-liang-he-bian-cheng-yu-yan-yi-zhi-stay-close-to-the-language">尽量和编程语言一致（Stay close to the language）</span></h2><p>让你的代码尽量去贴合你所用的语言，避免在原来的语言上去创造新的 DSLs 和非常规的界面</p>
+<h2><span id="jin-liang-bu-yao-po-pi-gui-ze-don-t-break-things-if-you-don-t-have-to">尽量不要破坏规则（Don’t break things if you don’t have to）</span></h2><p>稳定性本身就是一种价值。因为变化在最坏的情况下可能会导致你之前的付出都浪费了，在你去破坏一项规则之前，需要先衡量你的成本和最终的收益。</p>
+<h2><span id="bao-chi-kai-fang-de-xin-tai-keep-an-open-mind">保持开放的心态（Keep an open mind）</span></h2><p>有时要懂得拥抱变化，接受新的想法，不要害怕去改变，虚心听取他人的意见。</p>
+<h1><span id="xian-zai-lai-kan-react-shi-yi-zhang-jiang-piao-react-is-the-winning-ticket-for-now">现在来看，React 是一张奖票（React is the winning ticket (for now)）</span></h1><p>作者觉得目前 React 是构建用户界面一种比较好的方式，相信 React 也可以拥抱变化。<br>现在也感谢 React 的这种稳定性，相信在这段时间内可以享受它所带来的丰富的体验和稳定的架构。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMQAAADECAAAAADlzdG3AAADkElEQVR42u2aQXLcMAwE/f9Pb3JJyllLmB6SsnNoXVzeXVFsVkEAZvDxMVyv39efv5+vz99fffd+37Tu+2fva199V11CCLEAkTbTgE4bnTY5gd8d5j+/E0KIwxBT4F0tcrWZqzXiw28OghyIEEL8BAQBuEtU08PTZwlMCCF+CqKBowmObpAchhBCPAVxdxMNUPoymJ6ZkutyFSuEECUEaXj+h7/baocQQgCIF7waQSG9GFIQp4bqy2+FEOIgxNTskyCn90+Nzyr4R+q0hBBiAyIZIGkDjaBGCs2paLzcuxBCPACRxDDSyCfROZkxRLQYTRYhhNiEaIJ1xzhvDHpi5gghxNMQrQGfBKy7Io4KAikB3r6ZhBDiEERjnkym+U5gr5j9f9UOIYQ4BDH128QoJ4NWaWCFPh+bK0IIcQCCNO1T8KUmhojDaTAymv5CCHEAYjQuirghRR8RxVJgX+5JCCEOQiSfgiZE0p+sDHGlwxVCiNMQzQIEMolxJJnRF8OtwSKEEBsQZJH0ViAmzFRQtvNXt0KBEEIchCCzHnTIlooA1JyhIoMQQpyCeC1cTYJrzRsq7l0OMgohxGGIpgmKky+wOFxRv0cBTQghNiAaI5wahlRkS4NfOHkKIcQDEGRYhQYjMR2norA1L4UQ4iREGsqihuHU9KRmKsE2Q8dCCLEL0TYrxK1JTT85DDokGV0fIYRYgKAiMk1C0wEQI5IUmJcigRBCHIBYGQJpDJhGAGgEiTHAhRBiE4IkHNIwUZOxMfLvikykAAohxALEJEoRQYzc15qXtHm6zNhCCHEI4m4h2sBP5iMJUCpA3yqAQgjxAMRq8UbuXTVZiIAmhBCnIaabiQpNhraIqt0OdX0RlIUQ4hBEKgBJ4kvFIDVWmiRaVbFCCFFARGWtTGhEGE7rE6dUCCGehrhLQO1gIQn+JABUhaAQQjwAQZuZJkFSITkNa6XPhRDiCQgSvMlQoYZNasKa4nHs7IQQYgMimfKkqU9CNBl+IQMvcZBRCCE2IFqARgxuXw50sHL8rRBCbEK0A7fULGxeEsTkH41LIYQ4CNEknTbxJPGY/p+aJCGEOA2Rmg8iDDeCQxLMVtYRQojTECkgkyi2I5BhkWyqYoUQ4psh6OAJEc1OJlghhPhuCNo0EcOdDKYsryOEEIchUkLDwyKlqd4IaaMwJ4QQByHo0MmU1JL43CRVem+ldgghBIP4BVBiS6mB/OyCAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Others/git-分支约束以及-git-提交约束/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Translation/Translation/这里有ECMAScript-2016，2017和2018-最新特性的例子/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

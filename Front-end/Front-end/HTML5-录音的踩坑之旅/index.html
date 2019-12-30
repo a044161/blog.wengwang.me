@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="HTML5 录音的踩坑之旅">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                HTML5 录音的踩坑之旅 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            HTML5 录音的踩坑之旅
+              
+          </h1>
+          <p class="posted-on">
+            2017-12-17
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/HTML5/" rel="tag">
+                  HTML5
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>前一段时间的一个案子是开发一个有声课件，大致就是通过导入文档、图片等资源后，页面变为类似 PPT 的布局，然后选中一张图片，可以插入音频，有单页编辑和全局编辑两种模式。其中音频的导入方式有两种，一种是从资源库中导入，还有一种就是要提到的录音。<br>说实话，一开始都没接触过 HTML5 的 Audio API，而且要基于在我们接手前的代码中进行优化。当然其中也踩了不少坑，这次也会围绕这几个坑来说说感受（会省略一些基本对象的初始化和获取，因为这些内容不是这次的重点，有兴趣的同学可以自行查找 MDN 上的文档）：</p>
+<ul>
+<li>调用 Audio API 的兼容性写法</li>
+<li>获取录音声音的大小（应该是频率）</li>
+<li>暂停录音的兼容性写法</li>
+<li>获取当前录音时间</li>
+</ul>
+<a id="more"></a>
+<h1><span id="lu-yin-qian-de-zhun-bei">录音前的准备</span></h1><p>开始录音前，要先获取当前设备是否支持 Audio API。早期的方法 <code>navigator.getUserMedia</code> 已经被 <code>navigator.mediaDevices.getUserMedia</code> 所代替。正常来说现在大部分的现代浏览器都已经支持<code>navigator.mediaDevices.getUserMedia</code> 的用法了，当然<code>MDN</code>上也给出了兼容性的写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promisifiedOldGUM = <span class="function"><span class="keyword">function</span>(<span class="params">constraints</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// First get ahold of getUserMedia, if present</span></span><br><span class="line">	<span class="keyword">const</span> getUserMedia =</span><br><span class="line">		navigator.getUserMedia ||</span><br><span class="line">		navigator.webkitGetUserMedia ||</span><br><span class="line">		navigator.mozGetUserMedia;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Some browsers just don't implement it - return a rejected promise with an error</span></span><br><span class="line">	<span class="comment">// to keep a consistent interface</span></span><br><span class="line">	<span class="keyword">if</span> (!getUserMedia) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(</span><br><span class="line">			<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'getUserMedia is not implemented in this browser'</span>)</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Otherwise, wrap the call to the old navigator.getUserMedia with a Promise</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">		getUserMedia.call(navigator, constraints, resolve, reject);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Older browsers might not implement mediaDevices at all, so we set an empty object first</span></span><br><span class="line"><span class="keyword">if</span> (navigator.mediaDevices === <span class="literal">undefined</span>) &#123;</span><br><span class="line">	navigator.mediaDevices = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Some browsers partially implement mediaDevices. We can't just assign an object</span></span><br><span class="line"><span class="comment">// with getUserMedia as it would overwrite existing properties.</span></span><br><span class="line"><span class="comment">// Here, we will just add the getUserMedia property if it's missing.</span></span><br><span class="line"><span class="keyword">if</span> (navigator.mediaDevices.getUserMedia === <span class="literal">undefined</span>) &#123;</span><br><span class="line">	navigator.mediaDevices.getUserMedia = promisifiedOldGUM;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为这个方法是异步的，所以我们可以对无法兼容的设备进行友好的提示</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">navigator.mediaDevices.getUserMedia(constraints).then(</span><br><span class="line">	<span class="function"><span class="keyword">function</span>(<span class="params">mediaStream</span>) </span>&#123;</span><br><span class="line">		<span class="comment">// 成功</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">		<span class="comment">// 失败</span></span><br><span class="line">		<span class="keyword">const</span> &#123; name &#125; = error;</span><br><span class="line">		<span class="keyword">let</span> errorMessage;</span><br><span class="line">		<span class="keyword">switch</span> (name) &#123;</span><br><span class="line">			<span class="comment">// 用户拒绝</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'NotAllowedError'</span>:</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'PermissionDeniedError'</span>:</span><br><span class="line">				errorMessage = <span class="string">'用户已禁止网页调用录音设备'</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="comment">// 没接入录音设备</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'NotFoundError'</span>:</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'DevicesNotFoundError'</span>:</span><br><span class="line">				errorMessage = <span class="string">'录音设备未找到'</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="comment">// 其它错误</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'NotSupportedError'</span>:</span><br><span class="line">				errorMessage = <span class="string">'不支持录音功能'</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				errorMessage = <span class="string">'录音调用错误'</span>;</span><br><span class="line">				<span class="built_in">window</span>.console.log(error);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> errorMessage;</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>一切顺利的话，我们就可以进入下一步了。<br>（这里有对获取上下文的方法进行了省略，因为这不是这次的重点）</p>
+<h1><span id="kai-shi-lu-yin-zan-ting-lu-yin">开始录音、暂停录音</span></h1><p>这里有个比较特别的点，就是需要添加一个中间变量来标识是否当前是否在录音。因为在火狐浏览器上，我们发现一个问题，录音的流程都是正常的，但是点击暂停时却发现怎么也暂停不了，我们当时是使用 <code>disconnect</code> 方法。这种方式是不行的，这种方法是需要断开所有的连接才可以。后来发现，应该增加一个中间变量 <code>this.isRecording</code> 来判断当前是否正在录音，当点击开始时，将其设置为<code>true</code>，暂停时将其设置为<code>false</code>。<br>当我们开始录音时，会有一个录音监听的事件 <code>onaudioprocess</code> ，如果返回 <code>true</code> 则会将流写入，如果返回 <code>false</code> 则不会将其写入。因此判断<code>this.isRecording</code>，如果为 <code>false</code> 则直接 <code>return</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一些初始化</span></span><br><span class="line"><span class="keyword">const</span> audioContext = <span class="keyword">new</span> AudioContext();</span><br><span class="line"><span class="keyword">const</span> sourceNode = audioContext.createMediaStreamSource(mediaStream);</span><br><span class="line"><span class="keyword">const</span> scriptNode = audioContext.createScriptProcessor(</span><br><span class="line">	BUFFER_SIZE,</span><br><span class="line">	INPUT_CHANNELS_NUM,</span><br><span class="line">	OUPUT_CHANNELS_NUM</span><br><span class="line">);</span><br><span class="line">sourceNode.connect(<span class="keyword">this</span>.scriptNode);</span><br><span class="line">scriptNode.connect(<span class="keyword">this</span>.audioContext.destination);</span><br><span class="line"><span class="comment">// 监听录音的过程</span></span><br><span class="line">scriptNode.onaudioprocess = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="keyword">this</span>.isRecording) <span class="keyword">return</span>; <span class="comment">// 判断是否正则录音</span></span><br><span class="line">	<span class="keyword">this</span>.buffers.push(event.inputBuffer.getChannelData(<span class="number">0</span>)); <span class="comment">// 获取当前频道的数据，并写入数组</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当然这里也会有个坑，就是无法再使用，自带获取当前录音时长的方法了，因为实际上并不是真正的暂停，而是没有将流写入罢了。于是我们还需要获取一下当前录音的时长，需要通过一个公式进行获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const getDuration = () =&gt; &#123;</span><br><span class="line">    return (4096 * this.buffers.length) / this.audioContext.sampleRate // 4096为一个流的长度，sampleRate 为采样率</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就能够获取正确的录音时长了。</p>
+<h1><span id="jie-shu-lu-yin">结束录音</span></h1><p>结束录音的方式，我采用的是先暂停，之后需要试听或者其它的操作先执行，然后再将存储流的数组长度置为 0。</p>
+<h1><span id="huo-qu-pin-lu">获取频率</span></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getVoiceSize = <span class="function"><span class="params">analyser</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> dataArray = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(analyser.frequencyBinCount);</span><br><span class="line">	analyser.getByteFrequencyData(dataArray);</span><br><span class="line">	<span class="keyword">const</span> data = dataArray.slice(<span class="number">100</span>, <span class="number">1000</span>);</span><br><span class="line">	<span class="keyword">const</span> sum = data.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b);</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>具体可以参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/AnalyserNode/frequencyBinCount" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/AnalyserNode/frequencyBinCount</a></p>
+<h1><span id="qi-ta">其它</span></h1><ul>
+<li>HTTPS：在 chrome 下需要全站有 <code>HTTPS</code> 才允许使用</li>
+<li>微信：在微信内置的浏览器需要调用 JSSDK 才能使用</li>
+<li>音频格式转换：音频格式的方式也有很多了，能查到的大部分资料，大家基本上是互相 copy，当然还有一个音频质量的问题，这里就不赘述了。</li>
+</ul>
+<h1><span id="jie-yu">结语</span></h1><p>这次遇到的大部分问题都是兼容性的问题，因此在上面踩了不少坑，尤其是移动端的问题，一开始还有出现因为获取录音时长写法错误的问题，导致直接卡死的情况。这次的经历也弥补了 HTML5 API 上的一些空白，当然最重要的还是要提醒一下大家，这种原生的 API 文档还是直接查看 MDN 来的简单粗暴！</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAACIklEQVR42u2ayW7DMAxE/f8/7fbQQ+OKszgpkFFGlyBepGdA4jLkcYBxfg/n2vkzpmfPX+O4OwoVAXUuxjTp9Tq7tgKZ7j+sV6h4KLb49QPY5p+eRfMX6jOgmAFFzxaqUNNLV4irgZ3+T8a4UJ8BNU2CArfVs+wwvCRKKNTbQ7HE4b9+n8pmCvW2UKcxnPdQAkrfLVQ0FArGFAFjdU8J+FDSW6g9oBgIEyqQI3YEtIeNXqh4KCXYQgkm2tyKcV1mM4WKg2JJpSOqqU6dFQEKlQ9FnaOQUCqOm737J8ArVCwUc5ToMCBjyYzq6NwLtQ0UE2CZOIuuKwnDcqMXKhqKGTYlcXAM6phcFCoeytmczkJMcBvnK1Q0lNK85TTXqBUFKtgWKhZKSRycpglHeB2dfKHioZg4oYr8TtIBP6xQ0VBK08KdAhDa2KyWXahsKCY+IMFfccaKmD8az0LFQjmivtIQoYDSpKFQsVDUspIX0GZHh4MFjYXKhrornqoCLAOHxe1CxUKpAZpqNJ3ADkaehYqEYiIZW1z5KGXew1HuCvXWUErjwysK3k81dhUqGso1mKq4hozoWDAqVByU0tinNDqwIqSTvBYqG8o+FUJy6jRQsAS1UJlQqPFYmQQdEqVRsFB7QilG8I7RVBzz8n6htoe60xCoNAaO4IXaFkoxjCyYUwpThdoPii3KAkF2IKxNXqh4KCVxcIrSivFUnX2h4qC+AH9SqJgFjSTYAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Talk/Talk/2017，再见/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Read/Read/每天一小时，我读完了第二本书《JavaScript编程全解》/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

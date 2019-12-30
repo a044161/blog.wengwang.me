@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="从GHOST迁移到HEXO（引入 Travis CI）">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                从GHOST迁移到HEXO（引入 Travis CI） - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            从GHOST迁移到HEXO（引入 Travis CI）
+              
+          </h1>
+          <p class="posted-on">
+            2017-09-17
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/CI/" rel="tag">
+                  CI
+                </a>
+                
+                <a href="/tags/Linux/" rel="tag">
+                  Linux
+                </a>
+                
+                <a href="/tags/Hexo/" rel="tag">
+                  Hexo
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>上一周，不懂发生了什么误操作，导致我的服务器上的<code>mysql</code>跪了，然后通过快照进行恢复，本以为一切顺利，没想到数据库里面的数据全都乱码了，折腾了各种转码，还是不行，找到了一个可以测试各种编码结果的网站<a href="http://www.mytju.com/classcode/tools/messyCodeRecover.asp" target="_blank" rel="noopener">乱码恢复</a>，好在数据不多，通过很挫的手工方式进行一个个恢复。  </p>
+<a id="more"></a>
+<p>之后问了一下同事其实可以有更简便，针对多数据进行恢复的方式，先将数据库里面的数据导出，然后写一段转码的脚本，进行转换，然后再导回数据库。<br>当时发生了这次事故之后，我选择了更换博客的方案，由原来的<code>Ghost</code>换为<code>hexo</code>+<code>oss</code>+<code>travis ci</code>，原先在阿里云上购买了一个100G的硬盘，现在也被释放了，将图片存储到了<code>oss</code>。一开始的想法是，博客本身就可以只是一篇篇的<code>markdown</code>组成，不需要动用到数据库，<code>hexo</code>就是这么的轻量，部署之后，原来的<code>Ghost</code>需要占用内存100MB+，现在直接就降到了1MB，之后配合<code>hexo generate</code>又替换为了<code>nginx</code>静态站点。或许有人看到这里就会想说，为什么不直接使用<code>gitbug pages</code>和<code>hexo delpoy</code>就可以了，有以下几个理由：</p>
+<ol>
+<li>爱折腾</li>
+<li>爱折腾</li>
+<li>爱折腾</li>
+<li>我有服务器</li>
+<li>我有服务器</li>
+<li>我有服务器</li>
+</ol>
+<p>当然通过<code>gitbug pages</code>和<code>hexo delpoy</code>可以方便很多，也可以自定义域名什么的，但还是放在自己的服务器比较安心，因为国内的墙，你懂的。好了，接下来该进入正文了。  </p>
+<h1><span id="hexo-an-zhuang">Hexo 安装</span></h1><p>对于<code>hexo</code>的安装其实<a href="https://hexo.io/docs/setup.html" target="_blank" rel="noopener">官网</a>的教程已经很简单了，包括配置信息，都介绍的通俗易懂，我就简单概括一下。  </p>
+<h2><span id="1-an-zhuang">1.安装</span></h2><p>强烈建议大家使用<code>cnpm</code>来进行安装，先安装<code>hexo</code>的命令行工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo-cli -g</span><br></pre></td></tr></table></figure></p>
+<h2><span id="2-chu-shi-hua-mu-lu">2.初始化目录</span></h2><p>切换目录到你想要用来存放你<code>hexo</code>博客的目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog_name // 会生成初始的目录</span><br><span class="line">cd blog_name // 切换到目录下</span><br><span class="line">cnpm install // 安装依赖文件</span><br></pre></td></tr></table></figure>
+<h2><span id="3-mu-lu">3.目录</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml // 核心的配置文件</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds // 当你新建一篇博文时，会根据里面的定义好的初始结构，生成文件</span><br><span class="line">├── source // 源博文件</span><br><span class="line">|   ├── _drafts // 草稿箱</span><br><span class="line">|   └── _posts // 正式的文章</span><br><span class="line">└── themes // 主题</span><br></pre></td></tr></table></figure>
+<h2><span id="4-qi-dong-xiang-mu">4.启动项目</span></h2><p>在目录下  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>这是访问<code>http://localhost:4000</code>就能看见了</p>
+<p>到这里位置，就已经完成了全部的安装，还有更多细节的地方，我就不在这里一一讲述，可以自行查阅<a href="https://hexo.io/docs/setup.html" target="_blank" rel="noopener">官网</a>，因为这些不是本篇博文的重点，到了这里，才刚刚开始。</p>
+<h1><span id="travis-ci-deng-chang">Travis CI登场</span></h1><p>其实按照上面的那些配置，完成可以在自己的服务器上面跑起来了，先在自己的服务器上安装<code>pm2</code>进行进程管理，再拉取博客到服务器上，回到博客的目录，再创建一个<code>server.sh</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin</span><br><span class="line">hexo servr</span><br></pre></td></tr></table></figure></p>
+<p>然后通过<code>pm2</code>启动服务，<code>pm2 start server.sh</code>，之后在<code>nginx</code>的<code>/etc/nginx/sites-available</code>中新建一个配置<code>myblog.config</code>，然后加入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name: wengwang.me // 你的域名</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_set_header   X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header   Host      $http_host;</span><br><span class="line">        proxy_pass         http://127.0.0.1:4000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>保存，再将这个文件软连接到<code>sites-enabled</code>中，<code>ln /etc/nginx/sites-available/myblog.config /etc/nginx/sites-enabled/myblog.config</code>，之后再重启<code>nginx</code>，<code>service nginx restart</code>即可，直接访问你的域名就能看见啦。<br>但是这样怎么能够满足呢，因为这个时候每当你提交一篇博文时，需要进行以下几个操作：</p>
+<ol>
+<li>提交博文到<code>github</code></li>
+<li>登录到服务器</li>
+<li>切换到博客的目录下</li>
+<li>拉取</li>
+</ol>
+<p>这样就会显得很麻烦，我们就要把步骤简化到只要<code>git push</code>就可以了。  </p>
+<h2><span id="1-zhu-ce-travis-ci">1.注册Travis CI</span></h2><p>登录到Travis CI的<a href="https://www.travis-ci.org/" target="_blank" rel="noopener">官网</a>，这里要注意一下，根据你仓库的不同，访问的地址也不同，私有仓库访问的是<a href="https://www.travis-ci.com/" target="_blank" rel="noopener">https://www.travis-ci.com/</a>，公共仓库访问的是<a href="https://www.travis-ci.org/" target="_blank" rel="noopener">https://www.travis-ci.org/</a>，根据里面的提示，一步步完成和<code>github</code>的关联即可，简单来说就是，用<code>github</code>账号登录<code>Travis CI</code>，然后在<code>Travis CI</code>里面配置同步你的仓库，找到你的仓库并打开，再回到<code>Travsi CI</code>的首页的侧边栏就能看见你的仓库了。  </p>
+<h2><span id="2-tian-jia-travis-yml">2.添加.travis.yml</span></h2><p>回到你的博客文件夹下，在根目录添加一个<code>.travis.yml</code>文件，这个文件用来编写你的流程</p>
+<h2><span id="3-pei-zhi-travis-yml">3.配置.travis.yml</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">language: node_js # 设置语言为nodejs</span><br><span class="line">node_js: stable # 选择nodejs版本</span><br><span class="line">sudo: true # 开启管理员权限</span><br><span class="line">install: </span><br><span class="line">- npm install # 安装依赖文件</span><br><span class="line">script:</span><br><span class="line">- hexo g # 编译hexo</span><br></pre></td></tr></table></figure>
+<p>先编写这些内容进行测试，看看是否能够跑通，保存之后，提交代码到<code>master</code>分支，这时<code>Travis CI</code>就会收到<code>github</code>的消息，根据<code>.travis.yml</code>文件进行构建。这时回到<code>Travis CI</code>就能看到在运行了，一切顺利的话，就会有<code>passing</code>的状态，如下图<br><img src="https://oss.wengwang.me/images/wengwang_me/hexo/Others/travis-hexo-0.png" alt="travis-hexo-0"><br>这时看<code>log</code>的话，其实可以看见<code>hexo g</code>生成了好多的文件，其实就在当前的构建的目录<code>publish</code>文件夹下<br><img src="https://oss.wengwang.me/images/wengwang_me/hexo/Others/travis-hexo-1.png" alt="travis-hexo-0"><br>如果遇到了失败的话，可以查看下面的<code>log</code>，再查找相对应的解决方案。<br>成功的话，说明<code>Travis CI</code>和<code>github</code>之间已经成功跑通了，接下来我们就开始折腾服务器了。</p>
+<h2><span id="4-pei-zhi-nginx">4.配置<code>nginx</code></span></h2><p>我选择的是静态站点的方式，如果是起服务的话，安装我上面的那种配置就好。<br>选择静态站点的话，就要对<code>nginx</code>的<code>/etc/nginx/sites-available/myblog.config</code>，重新进行配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name: wengwang.me // 你的域名</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /your_site_dir; // 站点的根目录</span><br><span class="line">        index index.html; // 站点的首页</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样再软连接<code>ln /etc/nginx/sites-available/myblog.config /etc/nginx/sites-enabled/myblog.config</code>，在你站点的根目录下可以创建多个<code>html</code>文件，写一些不同的内容，然后再重启<code>nginx</code>，<code>service nginx restart</code>即可，这时访问域名验证以下内容是否正确。<br><code>nginx</code>的配置到这里就算结束了，为了安全起见，我们要配置一个专门用来构建的本地账户。  </p>
+<h2><span id="6-chuang-jian-yong-hu">6.创建用户</span></h2><p>可以先创建一个用户组<code>groupadd deploy</code>，这个用户组专门用来赋予部署的权限。<br>再通过命令<code>useradd -g deploy travisuser</code>创建用户，并把它放入用户组，然后 <code>passwd travisuser</code>创建密码，这时用户会被默认放在 <code>/home/travisuser</code>目录下，一定要记得到 <code>/home</code>下看看是否有<code>travisuser</code>这个文件夹，不然会影响接下来的操作。<br>远程登录一下，看看是否添加成功了。</p>
+<h2><span id="7-mian-mi-ma-deng-ru">7.免密码登入</span></h2><p>因为<code>Travis CI</code>是没有交互界面的，所以我们要弄一个免密码登录，这个时候就要建立本地设备和远程服务器的互信。<br>在本地设备上，生成一个公钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>可以选择一路回车下去，也可以选择在第一个提示时选择自己存放公钥的位置。<br>生成完成之后，我们就要把公钥传输到远程服务器，并记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id travisuser@your_server</span><br></pre></td></tr></table></figure></p>
+<p>第一次会要求你进行身份验证，验证通过后，就进行测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh travisuser@your_server</span><br></pre></td></tr></table></figure></p>
+<p>看看是否以及免密码登入了。</p>
+<h2><span id="8-an-zhuang-travis-gong-ju">8.安装Travis工具</span></h2><p>这时回到你的本地上，安装<code>Travis</code>工具，不同的操作系统，有不同的安装方式，直接查阅<a href="https://github.com/travis-ci/travis.rb#installation" target="_blank" rel="noopener">文档</a>，安装完成后登陆<code>travis login</code></p>
+<h2><span id="9-jia-mi-guan-jian-xin-xi">9.加密关键信息</span></h2><p>这时我们一共要加密两种信息，一种是公钥文件，一种是敏感信息。<br>因为我们要与服务器建立互信机制，所以要将密钥文件带入，又不能以铭文的形式存在，所以要进行一次加密，我们在本地上将目录切换到博客的根目录下，然后对密钥进行加密<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">travis encrypt-file /User/xx/.ssh/id_rsa --add</span><br><span class="line">//id_rsa 即刚刚生成的密钥文件</span><br><span class="line">// --add 会自动添加到.travis.yml文件中</span><br></pre></td></tr></table></figure></p>
+<p>随后在<code>.travis.yml</code>文件中就能看到添加了一下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">before_install:</span><br><span class="line">- openssl aes-256-cbc -K $encrypted_9d99a4372840_key -iv $encrypted_9d99a4372840_iv</span><br><span class="line">  -in id_rsa.enc -out ~/.ssh/id_rsa -d</span><br><span class="line">- chmod 600 ~/.ssh/id_rsa # 这两行是防止登录时的授权询问</span><br><span class="line">- echo -e &quot;Host 111.111.111.111\n\tStrictHostKeyChecking no\n&quot; &gt;&gt; ~/.ssh/config</span><br></pre></td></tr></table></figure></p>
+<p>有的时候会被自动加上<code>\</code>进行转义，我们要去掉。<br>为了保险起见，我不想被其他人知道我的服务器地址、端口、用户名、远程目录地址，这时我还要对这三个信息进行加密，我个人的习惯是现在<code>.travis.yml</code>中先把变量名定好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">after_success:</span><br><span class="line">- scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH # 上传文件</span><br><span class="line"></span><br><span class="line">// $SSH_PORT -&gt; ssh端口号</span><br><span class="line">// $SSH_USER -&gt; 用户名</span><br><span class="line">// $SSH_IP -&gt; 服务器ip地址</span><br><span class="line">// $SERVER_PATH -&gt; 远程目录地址</span><br></pre></td></tr></table></figure></p>
+<p>要实现这个功能，同样是借助<code>Travis</code>的工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">travis encrypt SSH_PORT=22 --add</span><br><span class="line">travis encrypt SSH_USER=travisuser --add</span><br><span class="line">travis encrypt SSH_IP=111.111.111.111 --add</span><br><span class="line">travis encrypt SERVER_PATH=/www/blog --add</span><br></pre></td></tr></table></figure></p>
+<p>这样就会在<code>.travis.yml</code>中多了以下信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">env:</span><br><span class="line">  global:</span><br><span class="line">  - secure: xxx</span><br><span class="line">  - secure: xx</span><br><span class="line">  - secure: xx </span><br><span class="line">  - secure: xx</span><br></pre></td></tr></table></figure></p>
+<p>ok，加密工作完成，这下我们再进行测试一下，先修改一下<code>.travis.yml</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">after_success:</span><br><span class="line">- ssh -p $SSH_PORT $SSH_USER@$SSH_IP &apos;pwd&apos;</span><br></pre></td></tr></table></figure></p>
+<p>然后推送到<code>master</code>分支，这时看看<code>Travis</code>的页面，耐心等待构建过程，之后再看看是否会完成免密码登录，再看看是否有登入后远程服务器的路径，一切顺利的话，就已经离成功不远了。</p>
+<h2><span id="10-tong-guo-scp-shang-chuan-wen-jian">10.通过<code>scp</code>上传文件</span></h2><p>一开始我选择的方案是<code>ftp</code>方式，期间踩了好多坑，当一切都跑通之后，才发现，<code>ftp</code>不能传输整个文件夹，当场就懵逼了，之后才换到了<code>scp</code>，具体<code>scp</code>是什么可以自行百度，简单来说就是<code>ssh</code>版的<code>cp</code>，ok，满足需求了，开搞。<br>为了保证能够跑的通，我们可以在本地先<code>hexo g</code>然后<code>scp -r  ./public/* traviuser@111.111.111.111:/www/blog</code>看下是否会免密码上传。可能这里会遇到一些文件夹的权限问题，可以在远程服务器上修改文件夹的权限，一种方式是<code>chmod -R 777 /www/blog</code>，一种是用户组<code>chmod -R root:group_name /www/blog</code>，根据自己的需求选择。成功上传后，因为之前已经配置过<code>nginx</code>了，所以直接访问就好，如果看到了页面了，说明就成功了。  这时我们就能安心的修改 <code>.travis.yml</code>了，添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">after_success:</span><br><span class="line">- ssh -p $SSH_PORT $SSH_USER@$SSH_IP &apos;rm -f $SERVER_PATH&apos; # 删除原目录，因为scp无法执行删除命名</span><br><span class="line">- scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH # 上传文件</span><br></pre></td></tr></table></figure></p>
+<p>大功告成，接下来是完整的<code>.travis.yml</code>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">language: node_js # 设置语言为nodejs</span><br><span class="line">node_js: stable # 选择nodejs版本</span><br><span class="line">sudo: true # 开启管理员权限</span><br><span class="line">install: </span><br><span class="line">- npm install # 安装依赖文件</span><br><span class="line">script:</span><br><span class="line">- hexo g # 编译hexo</span><br><span class="line">before_install:</span><br><span class="line">- openssl aes-256-cbc -K $encrypted_9d99a4372840_key -iv $encrypted_9d99a4372840_iv</span><br><span class="line">  -in id_rsa.enc -out ~/.ssh/id_rsa -d</span><br><span class="line">- chmod 600 ~/.ssh/id_rsa # 防止登录时的授权询问</span><br><span class="line">- echo -e &quot;Host $SSH_IP\n\tStrictHostKeyChecking no\n&quot; &gt;&gt; ~/.ssh/config</span><br><span class="line">after_success:</span><br><span class="line">- ssh -p $SSH_PORT $SSH_USER@$SSH_IP &apos;rm -f $SERVER_PATH&apos; # 删除原目录，因为scp无法执行删除命名</span><br><span class="line">- scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH # 上传文件</span><br><span class="line">env:</span><br><span class="line">  global:</span><br><span class="line">   - secure: xxx</span><br><span class="line">   - secure: xx</span><br><span class="line">   - secure: xx </span><br><span class="line">   - secure: xx</span><br></pre></td></tr></table></figure></p>
+<p>如果是<code>hexo server</code>的方式的话，就只要把<code>after_success</code>的进行替换，先登录，然后获取仓库就可以了。<br>之后只要简单的<code>git push</code>就能完成一次。</p>
+<h1><span id="zou-liao-bu-shao-wan-lu">走了不少弯路</span></h1><p>其实没有折腾都不知道，发现自己还是缺少很多的知识，比如<code>nginx</code>的配置，<code>linux</code>下的用户权限管理，也把<code>vsftp</code>玩了一遍，经过了一天的折腾，尝试了各种方案，终于将博客的整个方案搞定了。也想过通过<code>github</code>的<code>Webhooks</code>自己搭一个<code>CI</code>，一切都跑通了，但是还想到了进程该如何的管理，整个方案该怎么制定，最终还是换到了<code>Travis CI</code>，配置看着简单，但是也要有很多运维的知识进行支撑，这次也算增加了一点经验，每套方案都要经过各个方面的测试，这是我在这次实践中发现的问题，想要测试各个节点上面的实现，不然某个节点，因为一些无法避免的问题而放弃的话，那前面的折腾算白折腾了（从时间角度来说），折腾总是好，因为，人生本来就是用来折腾的。</p>
+<h1><span id="jie-yu">结语</span></h1><p>这篇博文算是一个总结，也希望能够给大家通过不同的思路，方法千千万万，没有最优，只有最合适的。这次折腾过后，也对<code>CI</code>有了一定的了解，除了它本身的含义<code>持续集成</code>外，我也想到了自己搭建<code>CI</code>的想法，希望之后能够开源一个轻量级的<code>CI</code>给大家，毕竟，东西在自己手上才最放心。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACfElEQVR42u2awY6DMAxE+f+fZvdSaVslnudQ7cEzuVRCFF4QY+yxr6tY9+96/b7W6py/530eX/1nd5+jFciRkPdirQA+YXZwqw3srlcde4MPpB0kEcy9WUosq01Vm15yBTKQhTAqMRExkvsEMpAVJA3SKvCrj0EgA0lfciUUIg4lwEdZUCDHQZJC7D9+H1eLgRwBeYu1MwK6Yth9BBBDIK0gVTDuJAed5FiJpvziBHI0JEkMKqEo06AK1DuDIZDekKT46hj8xLQicIH0hiQFkQJV5urjBlQgrSA7xryCoxsnH4btEw3kaEgVmLtNdNWIImbAsloMpBWkasRTE5+Iq6oId+ILpB9kZ06Iiohsmgb6QHpBkuElZY4SU6raoLpnIL0gaeClSXAnSFOjIZB+kLShTpJY2nHtmLSB9INUAfXEOCWDnJWZ8MYUSCtIYjq1Ai8o4IghIZPeQI6FpEMcZKipM/ykgGUwD6QVpIIlSS0e0hQGRSD9IFXw7SSoZHiJCAx3wgI5EhKb62BQZPcUlKkvB1ICaQVJX3oirpOBulbiG0hLSFpAqfNOGgCo+xBIC8gqWaDDcSfNfPJB2HZrAzkasmME0GY6GS4hwsNTfYEcBdk1k+TFoGmghkqlmRrIkZDk5a+KM1psqackB0UCaQmpTPtvJb5tQyGQVpC0x0iHOqqCvxIRMVYD6QF5i0WAVGJciQMlHoG0giSNSTJ0d9J4os39QPpBdhIDOtBEkxCV5JQKD+RoSJmBiBt0ArgK1ttiLJCBBDAk4KthERTgAxnILxhV1MSqku+LZsyBHAdJAnVnyI6IT8G2k95AjoGkhVjnGL1Oy1ULpAPkDzjnL550lroMAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Front-end/Front-end/一次有缺憾的单元测试修改/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Front-end/Front-end/记一次npm-package插件开发/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

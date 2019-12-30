@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="浅入React。 一次">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                浅入React。 一次 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            浅入React。 一次
+              
+          </h1>
+          <p class="posted-on">
+            2015-12-02
+          </p>
+          <div class="tags-links">
+            
+              
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>对的，都不知道要用什么来作为开头，就是简单的代入一下~看标题，浅入React 一次，对的，把Blog的第一次就贡献给React吧~当然还会 入React 两次、三次、等等。。。第一次正正经经的做一次分享，不好的地方请猛烈拍砖，来者便是客，欢迎留言交流，留者比粉啊~哈哈哈~这次会先说一下几点：<br><a id="more"></a></p>
+<ul>
+<li>一笔带过JSX  </li>
+<li>保底的React.createClass &amp; ReactDOM.render  </li>
+<li>状态之源 getInitialState  </li>
+<li>缠绵的 state &amp; props  </li>
+<li>牢记Component的生命  </li>
+</ul>
+<p>或许文中有不正确，不合理的地方，随便批评，随便撕B，我接受你的批评，回应你的撕B。这样才有讨论的气氛，进步的可能~ ^.^</p>
+<h1><span id="yi-bi-dai-guo-jsx">一笔带过JSX</span></h1><p>JSX是React特有的一种写法，一开始发现React的这种写法，我是头也不回的把页面关掉了。<br>对于JSX，我的了解并不深入，当然有兴趣的同学，可以查看React官方关于<a href="http://facebook.github.io/react/docs/displaying-data.html" target="_blank" rel="noopener">JSX</a>的文档，在这里我就简单的提一下</p>
+<h4><span id="yu-yuan-html-xie-fa-da-jia-de-shu-xing">与原HTML写法打架的属性</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class -&gt; ClassName   </span><br><span class="line">for -&gt; htmlFor </span><br><span class="line">style -&gt; style=&#123;&#123;&apos;color&apos;:&apos;red&apos;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>我目前碰到的、最常出错的就是这三个。<br>对于<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>一定要加上<code>/</code>，正确的姿势<code>&lt;img/&gt;</code>、<code>&lt;input/&gt;</code></p>
+<h4><span id="chuan-di-ge-chong-zhi">传递各种值</span></h4><p><code>&lt;div&gt;{value}&lt;/div&gt;</code><br>使用<code>{}</code>来传递值，可以传递各种各样的，包括三元运算符<code>&lt;div&gt;{value ? true : false}&lt;/div&gt;</code>、方法（在组件中定义的一些方法、会用在事件绑定上）<code>&lt;div onClick={this.handleClick}&gt;click me&lt;/div&gt;</code>、布尔值，undefined,null需要包裹在<code>{}</code>，例如<code>{true}</code></p>
+<h4><span id="ge-chong-zi-shi">各种“姿势”</span></h4><p><code>&lt;div onClick={this.handleClick}&gt;click me&lt;/div&gt;</code>  </p>
+<ul>
+<li>点击事件 -&gt; <code>onClick</code>  </li>
+<li><code>&lt;input/&gt;</code>监听事件 -&gt; <code>onChange</code>  </li>
+<li>输入事件 -&gt; <code>onInput</code>  </li>
+<li>鼠标事件 -&gt; <code>onMouseOver</code>、<code>onMouseUp</code>、<code>onMouseDown</code><br>这里就举例我常用到的几个，类型的事件其实和js基本类似，有兴趣的同学可以查看官方的<a href="http://facebook.github.io/react/docs/events.html" target="_blank" rel="noopener">事件系统</a>文档<h1><span id="bao-di-de-react-createclass-amp-reactdom-render">保底的React.createClass &amp; ReactDOM.render</span></h1><h4><span id="react-creatclass">React.creatClass</span></h4>React.createClass 是用来创建一个Component  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;I&apos;m from Component&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">```  </span><br><span class="line">其中 React.createClass 传递的参数为一个`&#123;&#125;`集合，同样最基本的，也是不可缺少的属性为==render==，该属性的作用为渲染==HTML==。最简单的一个Component就是这样创建出来的。最终调用的形式为`&lt;Componet/&gt;`</span><br><span class="line">#### ReactDOM.render</span><br><span class="line">自从0.14版本后，就变为使用==react-dom==渲染最后的组件，调用格式为</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>var Component = React.createClass({<br>    render: function(){<br>        return(<br>            <div>I’m from Component</div><br>        )<br>    }<br>})</p>
+<p>ReactDOM.render(<br>    <component>,<br>    document.getElementById(‘id’);<br>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">传递两个参数，第一个为最终要渲染到界面的Component，第二个为HTML元素；最终该Component会插入到HTML元素内。</span><br><span class="line"># 状态之源 getInitialState</span><br><span class="line">这是一个非常重要的方法，重中之重啊  </span><br><span class="line">```javascript</span><br><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            stateValue: &apos;hehe&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    handleChangeState: function()&#123;</span><br><span class="line">        this.setState(&#123;stateValue: &apos;o&apos;&#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;&#123;this.state.stateValue&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Component propsData=&#123;false&#125;/&gt;,</span><br><span class="line">    document.getElementById(&apos;id&apos;);</span><br><span class="line">)</span><br></pre></td></tr></table></figure></component></p>
+<p><code>getInitialState</code>定义时返回的是一个对象<code>{}</code>，里面包含你想要定义的初始状态，可以为字符串、布尔值、函数返回值等等…<br>想要修改state必须唯一只能使用<code>setState({})</code>，参数为你想要修改的属性。<br>React也是依据state的状态变化作为重新渲染的依据。</p>
+<h1><span id="chan-mian-de-state-amp-props">缠绵的 state &amp; props</span></h1><p><code>state</code>和<code>props</code>可为一对好基友，惺惺相惜</p>
+<h4><span id="cha-bo-yi-tiao-zu-jian-qian-tao">插播一条组件嵌套</span></h4><p>忽然发现忘记提一下组件嵌套了。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var Parent = React.createClass(&#123;</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Children fromParent=&#123;&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var Children = React.creatClass(&#123;</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;i&apos;m from Children&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>对的，想要在父组件中嵌套子组件，就和引用HTML标签一样，<code>&lt;&gt;</code>+组件名 = <code>&lt;组件名/&gt;</code><br>有一点需要注意，<code>render</code>中<code>return</code>的HTML标签都必须有个最外层的标签包裹，特别需要注意的是子组件必须包裹在一个HTML标签内，下面是一个错误的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var Parent = React.createClass(&#123;</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">           &lt;Children fromParent=&#123;&#125;/&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var Children = React.creatClass(&#123;</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;Oops&lt;/div&gt;</span><br><span class="line">            &lt;div&gt;i&apos;m from Children&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在<code>Parent</code>中，子组件没有包裹在一个HTML标签内。<br>在<code>Children</code>中，两个<code>&lt;div&gt;</code>没有包裹在一个HTML标签内。</p>
+<h4><span id="props">props</span></h4><p>父组件想要和子组件通信就要通过props，子组件通过<code>this.props.xxx</code>获取父组件传递给子组件的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var Parent = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            data: &apos;parent&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Children fromParent=&#123;this.state.data&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var Children = React.creatClass(&#123;</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;&#123;this.props.fromParent&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>父组件通过在标签内<code>fromParent={this.state.data}</code>定义想要传给子组件的属性、当然属性的类型也是各种各样，包括函数。<br>子组件通过<code>this.props.fromParent</code>获取值。<br>对了，props是不能修改的，props只会根据父组件传递的值改变而改变，修改props并不会影响父组件的值。</p>
+<h4><span id="yi-xia-fan-shang">以下犯上</span></h4><p>子组件想要修改父组件的state呢？好办！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var Parent = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            data: &apos;parent&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    storeData: function(new_data)&#123;</span><br><span class="line">        this.setState(&#123;data: new_data&#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Children fromParent=&#123;this.state.data&#125; storeData=&#123;this.storeData&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var Children = React.creatClass(&#123;</span><br><span class="line">    handleClick: function()&#123;</span><br><span class="line">        var data = &apos;new data!!!&apos;;</span><br><span class="line">        this.props.storeData(data);</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div onClick=&#123;this.handleClick&#125;&gt;&#123;this.props.fromParent&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>现在父组件定义一个方法<code>storeData</code>该方法的参数为你想要传递的数据，然后使用<code>this.setState()</code>进行修改，再将该方法传递给子组件，子组件调用的时候就能够修改父组件的state，但本质还是父组件自己修改自己的state。</p>
+<h1><span id="lao-ji-component-de-ming-yun">牢记Component的命运</span></h1><h4><span id="component-de-cheng-chang-shi">Component的成长史</span></h4><p><code>componentWillMount</code> -&gt; <code>componentDidMount</code> -&gt; <code>componentWillReceiveProps</code> -&gt; <code>shouldComponentUpdate</code> -&gt; <code>componentWillUpdate</code> -&gt; <code>componentDidUpdate</code> -&gt; <code>componentWillUnmount</code><br>从字面的翻译上应该是很好理解的吧？我就不多BB了，要记住的一点是上面给出的顺序是第一次渲染Component时，Component的生命周期，但数据发生变化时，生命周期就发生了变化，<code>componentWillReceiveProps</code> -&gt; <code>shouldComponentUpdate</code> -&gt; <code>componentWillUpdate</code> -&gt; <code>componentDidUpdate</code><br>我从我最常接触到的来讲，  <code>componentDidMount</code>、<code>componentWillReceiveProps</code></p>
+<h5><span id="componentdidmount">componentDidMount</span></h5><p>这是在Component挂在后的阶段，也就是DOM都已经生成，可以做一些UI上初始化的行为，例如根据返回的数据渲染到HTML，同时也是ajax比较常见的放置点，这是组件第一次渲染时最后一次修改state的机会，可以触发state变化，从而重新渲染界面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            isUpdate: false</span><br><span class="line">        )</span><br><span class="line">    &#125;,</span><br><span class="line">    componentDidMount: functon()&#123;</span><br><span class="line">        $.get(url,params, function(res)&#123;</span><br><span class="line">            this.setState(&#123;isUpdate: res&#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        var text = this.state.isUpdate? &apos;Update!&apos; : &apos;NO~!&apos;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;&#123;text&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Component/&gt;,</span><br><span class="line">    document.getElementById(&apos;id&apos;);</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>先定义一个<code>state</code>，当第一次渲染时<code>isUpdate</code>为<code>false</code>，当DOM生成后进入<code>componentDidMount</code>，于是获取到新的值，此时<code>state</code>发生变化，便触发组件的更新。自此<code>componentDidMount</code>的生命就走到了尽头，接下来的路就交给了<code>componentWillReceiveProps</code></p>
+<h5><span id="componentwillreceiveprops">componentWillReceiveProps</span></h5><p>顾名思义该方法在将要接收到props时触发，注意是==<strong>将要</strong>==，==<strong>将要</strong>==，==<strong>将要</strong>==收到==<strong>props</strong>==，==<strong>props</strong>==，==<strong>props</strong>==时触发。参数为下一个的props。最常用的就是在跟之前的props进行对比，如果不同触发相应的行为，如果相同触发相应的行为。或者更新下一个的props到state。根据各种需求而使用吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            isUpdate: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    componentWillReceiveProps: functon(nextprops)&#123;</span><br><span class="line">        var data = nextprops.propsData;</span><br><span class="line">        this.setstate(&#123;isUpdate: data&#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        var text = this.state.isUpdate? &apos;Update!&apos; : &apos;NO~!&apos;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;&#123;text&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Component propsData=&#123;false&#125;/&gt;,</span><br><span class="line">    document.getElementById(&apos;id&apos;);</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>==nextprops==是下一个的props，是一个包含有进行传递的props对象。<br>关于Component的生命周期还有的几种比较少用到，尤其是Update的，曾经用的时候，<code>console.log()</code>直接崩溃了，同样还是参考官方文档，<a href="http://facebook.github.io/react/docs/component-specs.html" target="_blank" rel="noopener">组件的生命周期</a></p>
+<h1><span id="jie-yu">结语</span></h1><p>先分享一些简单的内容，可能会有蛮多遗漏的地方，希望大家能够帮忙提出来；也希望能够对想要了解React的同学一些小小的帮组，接触React的时间并不长，手上的项目也还未完成，等项目结束，会结合实际中遇到的问题一起分享出来，不断完善 <em>浅入React</em> 。<br>为什么没有在开头介绍React的<a href="http://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="noopener">环境配置</a>呢？个人觉得，一搜一大把，就不必在这写出来了，只为分享一些最简单易懂的内容。接下来的计划也会按照原来<a href="http://www.wengwang.me/2015/11/29/blogzheng-shi-kai-qi/" target="_blank" rel="noopener">开篇文章</a>写得那样进行。<br>最后还是希望喜欢的人能够分享，能够评论，能够交流，一起跳入React的大坑。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAACKklEQVR42u2a227DMAxD8/8/vb1swObV5JGBAWFKv2xJG/sEUHWhdF1ifXyt7/9/3lvX+p11j/X563QVKgJKHeIOVoeuAG7/X7CFiodabWxnsOq+slW3z5/rQr0NlHKUr57Z/ZgK9d5Q1HHujP/khQqVD+UM0X22C8YkYI+zhELdHkrl7v/597iaKdStoT7MUg5WFZjk+9szCxUNpQyPBFwSkFXyuH2uUNFQRCRzG58IIS7QF+o5UO5AIpY5B0ruFyoXSgVUtYkTbFVRYIN+oWKhVOCkuTwVxVwwtgCFioByoikpVk8E2HHTqFBRUK7oJEk+CcgTMaVQuVBEbHDX5McyKl4L9QgoZ5iqICUivYJDVXGhYqCIM3TOzjWRlNAmE8NCRUKRQT/n/FSBMS1sUXQvVAQUMXQaYOlLSIGjULFQ06SeDuWcQOCBiULdGupkIIaKrHQ452VXtFDRUBNBgxYADlruX6hoKGLA1OmpgK72wJ3RQkVA0QFTVVg4QVaJIVvVpVCxUCcJnXOU7jP6bKFyoejgDBmIcE0AN9QlldtCxUG5AT7lTMkQDwUv1DOhJsM3ExGNireFyoWaNLbpEOGJcR8PSxTqdlAuX3dFhCtInTgyaUYVKgdKGThxopMBQSeIFOo5UHRYRl2rl6LDPZebWCzUY6Cc0HbSAMdibKEeB+U6AzTqO+c7MvRC3R6KFAxK+KDFKQ3QhcqGIn0aWnxS5zoe4ipUCtQnADDIeCNc8icAAAAASUVORK5CYII=" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Talk/Talk/分工合作那点事/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="PostCSS、stylus与SCSS的技术选型">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                PostCSS、stylus与SCSS的技术选型 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            PostCSS、stylus与SCSS的技术选型
+              
+          </h1>
+          <p class="posted-on">
+            2017-07-09
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/CSS/" rel="tag">
+                  CSS
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>最近因为在做自己的side project，又想回到了想以前那样，每做一些事情就会引发一些思考，个人觉得这篇文章写的有点打酱油，之后是希望自己能够应用起来之后，再做完整的一次分享。</p>
+<a id="more"></a>
+<h1><span id="postcss">PostCSS</span></h1><h4><span id="jian-jie">简介</span></h4><p>PostCSS 其实和其它两个有所不同，它是作为一个平台，开发者可以开发任何自己需要的插件。官方写的是 “A tool for transforming CSS with JavaScript”，一个用JavaScript转换css的工具。</p>
+<h4><span id="you-dian">优点</span></h4><ul>
+<li><p>扩展性强</p>
+</li>
+<li><p>兼容性强  </p>
+</li>
+<li><p>功能全面</p>
+</li>
+</ul>
+<h4><span id="que-dian">缺点</span></h4><ul>
+<li><p>配置繁琐</p>
+</li>
+<li><p>学习曲线相对较陡</p>
+</li>
+</ul>
+<h1><span id="stylus">stylus</span></h1><h4><span id="jian-jie">简介</span></h4><p>与SCSS类似，在写法上与原生的css还是有很大的不同，写法很像在写js，又很像在写python。</p>
+<h4><span id="you-dian">优点</span></h4><ul>
+<li><p>更加健壮</p>
+</li>
+<li><p>写法更接近于写js</p>
+</li>
+<li><p>功能强大</p>
+</li>
+</ul>
+<h4><span id="que-dian">缺点</span></h4><ul>
+<li>写法需要一定的适应时间</li>
+<li>学习曲线相对较陡</li>
+</ul>
+<h1><span id="scss">SCSS</span></h1><h4><span id="jian-jie">简介</span></h4><p>预处理框架，提供丰富的语法，上手较快。</p>
+<h4><span id="you-dian">优点</span></h4><ul>
+<li><p>功能强大</p>
+</li>
+<li><p>上手较快</p>
+</li>
+<li><p>语法接近于原生css</p>
+</li>
+<li><p>语法简洁</p>
+</li>
+</ul>
+<h4><span id="que-dian">缺点</span></h4><ul>
+<li><p>依赖ruby</p>
+</li>
+<li><p>node下安装麻烦</p>
+</li>
+</ul>
+<h1><span id="san-zhe-dui-bi">三者对比</span></h1><p>三者对比的话，我觉得如果从一些上手程度或者配置的过程进行对比的话，一定是SCSS和stylus要优于PostCSS。<br>stylus和SCSS能不能说在一定程度上他们是类似的，解决的也都是类似的问题，而PostCSS就有所不同，PostCSS提供的是一个平台，而SCSS和stylus提供的是一种新的语法。<br>stylus和SCSS也许只能使用他们所提供的能力来做相对应的事情，但是PostCSS是可以给你机会来做更多你想做的事情，我想这就是他们三者最大的区别吧。</p>
+<h1><span id="zui-zhong-xuan-ze">最终选择</span></h1><p>经过这几天的一个思考，我没有写相对应的demo，但是我一直在想，PostCSS既然是一个平台，那么它的可能性是更大的，学习曲线有可能是由陡到缓。<br>我一开始一直在犹豫PostCSS的时候是在纠结，我用了PostCSS，为什么我还要引入相对应的SCSS的插件呢，于是就开始看有没有其它的代替方案，也在不断的看css-next，后来发现我这样的想法其实是愚蠢的，因为我一直忽略了一点，PostCSS是一个平台，平台所提供的可能性是更大的，我不能将PostCSS的某些功能和SCSS、stylus进行对比，我可以依旧在PostCSS上面使用SCSS或者stylus的语法，但是我还能使用其它更加强大的功能，形成一个我的工具包，甚至找不到合适的插件，我可以自己编写插件，这是SCSS或者stylus所无法做到的。因此我最终的选择会是PostCSS，当然，我一直秉承的思想就是要选择适合自己的，适合自己的才是最好的。  </p>
+<h1><span id="demo">DEMO</span></h1><p>简单的以PostCSS和gulp的使用做了一个demo，不过既然是对比，之后还会再继续加上SCSS和stylus的demo。<br><a href="https://github.com/a044161/demo-or-test/tree/master/gulp" target="_blank" rel="noopener">https://github.com/a044161/demo-or-test/tree/master/gulp</a></p>
+<h1><span id="jie-yu">结语</span></h1><p>其实这篇文章是7月4号时创建的，后来因为工作上比较忙，也就没有继续完成下去，到了周末就想在家好好休息，然后也在思考这几个问题，最后还是倾向于PostCSS。  </p>
+<p><a href="https://juejin.im/entry/5966de11f265da6c332419e2/detail" target="_blank" rel="noopener"><img src="https://badge.juejin.im/entry/5966de11f265da6c332419e2/likes.svg?style=flat-square" alt=""></a></p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACdklEQVR42u2awXbCMAwE+f+fpj0CtbWjQA9YkwtpipMJz5LlXd1uxXH/PR4/X69X4x7H7s5fr106hDwS8r44VjeoHpDO098Vh5AzIXcBQ4JnNflXL5gCpwxQIYUsEi5NxKuH74JESCE7kFUg7GoAuhjgQkbIcZDVRN5dIwvACpIGk5BzIWky/u/Pj+wWhfx6yHs4usGVCggaME9jhRwFWW2SqmCqzqlQVT2rXHGEPB6yKlzTjaqJT16YimVCzoGkBS3d6L8zfrcICDkPMm3+U2ImST9trkqBQshRkGRyE+GzAqmK6BSENxqBQh4D2TEuqzddvTk1P5NRJeQsyCuGepWsUzB2EvvlX1PIr4dMcHSTlgSvZLDG4kXIMZDVRL56PY0hoqyQMyE7my9SvNJG0FSYPP1PyFGQ3URNRX4irCZAIWdCdgzPVAh0GkKJUS+kkDThJucqmZpkg/ZH6RVyDGRqVEqiJ2n4vCKKbQsMIcdAdkGogNAx5ZGgJeQISBokSfikhlV3wRByFmQqFDqFBxFJyQ8h5GzIatISMYCY9qQJBBe8Qh4PmRL1leK3ahAlBhRuqBNyBGRKxGTzlO6ViuC44gh5NCQ1Nom5STZbnaZSIWdDEsGeFrqpyKULiJAzIYmw3zXpqXBAxVUhhUzFLTXWO01zQgq5E/ZJA0inQCBiQavQEfJ4SNIMQhqSiLFOxi0DUMhRkLQBkz7wiqFKmp6EnAXZSbw0IJK51DUShJwHSQxMuiF7R0jdRraQQjZEfbIIvCOuCilkHAC+RxpM0g+Ak7mQR0KSJmFivlffo+fReRDyeEgywUmjUtq80UKDLBhCHgv5A+myb14RnYYrAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Front-end/Front-end/小试单元测试-mocha-should/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Talk/Talk/meeting/TFC-2017-随记/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

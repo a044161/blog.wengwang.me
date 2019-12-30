@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="这里有ECMAScript 2016，2017和2018 最新特性的例子">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                这里有ECMAScript 2016，2017和2018 最新特性的例子 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            这里有ECMAScript 2016，2017和2018 最新特性的例子
+              
+          </h1>
+          <p class="posted-on">
+            2018-05-24
+          </p>
+          <div class="tags-links">
+            
+              
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p><strong>文章并非通篇翻译，而是进行了摘要，有兴趣的小伙伴建议直接阅读原文，有什么好的建议，或者不对的地方，欢迎留言或者@我</strong></p>
+<p>原文链接：<a href="https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e" target="_blank" rel="noopener">https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e</a>  </p>
+<hr>
+<p>下文包含了18个 TC39 已完成提案的特性</p>
+<a id="more"></a>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#ecmascript-2016">ECMAScript 2016</a><ul>
+<li><a href="#array-prototype-includes">Array.prototype.includes</a></li>
+<li><a href="#mi-zhong-zhui-yun-suan-fu-exponentiation-infix-operator">幂中缀运算符（Exponentiation infix operator）</a></li>
+</ul>
+</li>
+<li><a href="#ecmascript-2017">ECMAScript 2017</a><ul>
+<li><a href="#object-values">Object.values()</a></li>
+<li><a href="#object-entries">Object.entries()</a></li>
+<li><a href="#zi-fu-chuan-tian-chong-string-padding">字符串填充（String padding）</a></li>
+<li><a href="#object-getownpropertydescriptors">Object.getOwnPropertyDescriptors</a></li>
+<li><a href="#han-shu-can-shu-hou-mian-jia-dou-hao-add-trailing-commas-in-the-function-parameters">函数参数后面加逗号（Add trailing commas in the function parameters）</a></li>
+<li><a href="#async-await">Async/Await</a></li>
+</ul>
+</li>
+<li><a href="#ecmascript-2018">ECMAScript 2018</a><ul>
+<li><a href="#gong-xiang-nei-cun-he-atomics-shared-memory-and-atomics">共享内存和 atomics （shared memory and atomics）</a></li>
+<li><a href="#mo-ban-zi-fu-chuan-xian-zhi-bei-yi-chu-tagged-template-literal-restriction-removed">模板字符串限制被移除（Tagged Template literal restriction removed）</a></li>
+<li><a href="#zheng-ze-biao-da-shi-de-dotall-fu-hao-dotall-flag-for-regular-exporession">正则表达式的“dotall”符号（”dotall” flag for Regular exporession）</a></li>
+<li><a href="#zheng-ze-biao-da-shi-de-ming-ming-fen-zu-bu-huo-regexp-named-group-captures">正则表达式的命名分组捕获（RegExp Named Group Captures）</a></li>
+<li><a href="#rest-properties-for-objects">Rest properties for Objects</a></li>
+<li><a href="#spread-properties-for-objects">Spread properties for Objects</a></li>
+<li><a href="#zheng-ze-biao-da-shi-de-hui-su-duan-yan-regexp-lookbehind-assertions">正则表达式的回溯断言（RegExp Lookbehind Assertions）</a></li>
+<li><a href="#zheng-ze-biao-da-shi-de-unicode-zhuan-yi-zi-fu-regexp-unicode-property-escapes">正则表达式的 Unicode 转义字符（RegExp Unicode Property Escapes）</a></li>
+<li><a href="#promise-prototype-finally">Promise.prototype.finally()</a></li>
+<li><a href="#yi-bu-die-dai-asynchronous-iteration">异步迭代（Asynchronous Iteration）</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h1><span id="ecmascript-2016">ECMAScript 2016</span></h1><h2><span id="array-prototype-includes">Array.prototype.includes</span></h2><p>数组的 <code>includes</code> 方法可以非常简单的判断谋项是否存在于数组中，包括 <code>NaN</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="literal">NaN</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 indexOf 的情况</span></span><br><span class="line"><span class="keyword">if</span> (arr.indexOf(<span class="number">3</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="literal">true</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 includes</span></span><br><span class="line"><span class="keyword">if</span> (arr.includes(<span class="number">3</span>)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="literal">true</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PS: indexOf 无法搜索 NaN</span></span><br><span class="line">arr.includes(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line">arr.indexOf(<span class="literal">NaN</span>) <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+<h2><span id="mi-zhong-zhui-yun-suan-fu-exponentiation-infix-operator">幂中缀运算符（Exponentiation infix operator）</span></h2><p>类似 <code>++</code> <code>--</code>，使用 <code>**</code> 可以快速进行幂运算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 Math.pow</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">7</span>, <span class="number">2</span>) <span class="comment">// 49</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 **</span></span><br><span class="line"><span class="number">7</span>**<span class="number">2</span> <span class="comment">// 49</span></span><br></pre></td></tr></table></figure>
+<h1><span id="ecmascript-2017">ECMAScript 2017</span></h1><h2><span id="object-values">Object.values()</span></h2><p>可以用于获取 Object 的值，类似 <code>Object.keys()</code> 用于获取 Object 中的 key</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = &#123; <span class="attr">BMW</span>: <span class="number">3</span>, <span class="attr">Tesla</span>: <span class="number">2</span>, <span class="attr">Toyota</span>: <span class="number">1</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 Object.keys() 加上 map 的方式获取值</span></span><br><span class="line"><span class="keyword">const</span> vals = <span class="built_in">Object</span>.keys(cars).map(<span class="function"><span class="params">key</span> =&gt;</span> cars[key])</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(vals) <span class="comment">// [3, 2, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 Object.values()</span></span><br><span class="line"><span class="keyword">const</span> values = <span class="built_in">Object</span>.values(cars)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(values) <span class="comment">// [3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+<h2><span id="object-entries">Object.entries()</span></h2><p>将对象的 key 和 value 变为数组的形式，便于对象的遍历或者将 Object 转换为 Map</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 使用效果</span></span><br><span class="line"><span class="keyword">const</span> cars = &#123; <span class="attr">BMW</span>: <span class="number">3</span>, <span class="attr">Tesla</span>: <span class="number">2</span>, <span class="attr">Toyota</span>: <span class="number">1</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> entries = <span class="built_in">Object</span>.entries(cars)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(entries) <span class="comment">// [ ['BMW', 3], ['Tesla', 2], ['Toyota', 1] ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 Object 转化为 Map </span></span><br><span class="line"><span class="keyword">const</span> cars = &#123; <span class="attr">BMW</span>: <span class="number">3</span>, <span class="attr">Tesla</span>: <span class="number">2</span>, <span class="attr">Toyota</span>: <span class="number">1</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="built_in">Map</span>(<span class="built_in">Object</span>.entries(cars))</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345007434430758e3ac6e1b44b1865178e7aff9082e000" target="_blank" rel="noopener">关于 Map 相关的资料点击这里</a></p>
+<h2><span id="zi-fu-chuan-tian-chong-string-padding">字符串填充（String padding）</span></h2><p>可以使用 <code>String.prototype.padStart</code> 和 <code>String.prototype.padEnd</code> 来填充字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 其中第一个参数代表字符串的最终的长度，第二个参数表示需要填充的内容</span></span><br><span class="line"><span class="comment">// 从头开始填充</span></span><br><span class="line"><span class="string">'5'</span>.padStart(<span class="number">10</span>, <span class="string">'*'</span>) <span class="comment">// '*********5' </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从尾开始填充</span></span><br><span class="line"><span class="string">'5'</span>.padEnd(<span class="number">10</span>, <span class="string">'*'</span>) <span class="comment">// '5*********'</span></span><br></pre></td></tr></table></figure>
+<h2><span id="object-getownpropertydescriptors">Object.getOwnPropertyDescriptors</span></h2><p>用于返某个 Object 的所有细节包括（get，set）<br>可以通过 Object 的浅拷贝（Object.assign）和深拷贝（Object.defineProperties）来验证</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Car = &#123;</span><br><span class="line">    name: <span class="string">'BMW'</span>,</span><br><span class="line">    price: <span class="number">1000000</span>,</span><br><span class="line">    set discount(x) &#123;</span><br><span class="line">        <span class="keyword">this</span>.d = x;</span><br><span class="line">    &#125;,</span><br><span class="line">    get discount() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(Car, <span class="string">'discount'</span>));</span><br><span class="line"><span class="comment">// &#123; </span></span><br><span class="line"><span class="comment">//   get: [Function: get],</span></span><br><span class="line"><span class="comment">//   set: [Function: set],</span></span><br><span class="line"><span class="comment">//   enumerable: true,</span></span><br><span class="line"><span class="comment">//   configurable: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.assign</span></span><br><span class="line"><span class="keyword">const</span> ElectricCar = <span class="built_in">Object</span>.assign(&#123;&#125;, Car)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(ElectricCar, <span class="string">'discount'</span>))</span><br><span class="line"><span class="comment">// &#123; </span></span><br><span class="line"><span class="comment">//   value: undefined,</span></span><br><span class="line"><span class="comment">//   writable: true,</span></span><br><span class="line"><span class="comment">//   enumerable: true,</span></span><br><span class="line"><span class="comment">//   configurable: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.defineProperties</span></span><br><span class="line"><span class="keyword">const</span> ElectricCar2 = <span class="built_in">Object</span>.defineProperties(&#123;&#125;, <span class="built_in">Object</span>.getOwnPropertyDescriptors(Car))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(ElectricCar2, <span class="string">'discount'</span>))</span><br><span class="line"><span class="comment">// &#123; get: [Function: get],  👈🏼👈🏼👈🏼</span></span><br><span class="line"><span class="comment">//   set: [Function: set],  👈🏼👈🏼👈🏼</span></span><br><span class="line"><span class="comment">//   enumerable: true,</span></span><br><span class="line"><span class="comment">//   configurable: true </span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="han-shu-can-shu-hou-mian-jia-dou-hao-add-trailing-commas-in-the-function-parameters">函数参数后面加逗号（Add trailing commas in the function parameters）</span></h2><p>这样的原因是为了类似使用 git 这类的工具时，只有新增的行发生变化（可能和代码风格有关）</p>
+<h2><span id="async-await">Async/Await</span></h2><p>这个应该都比较熟悉了，直接上例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUser</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(<span class="string">'join'</span>)</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBankBalance</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(<span class="string">'$1,000'</span>)</span><br><span class="line">        &#125;, <span class="number">2000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 async/await 之前</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAmount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    getUser()</span><br><span class="line">        .then(getBankBalance)</span><br><span class="line">        .then(<span class="function"><span class="params">amount</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(amount)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 async/await 之后</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getAmount2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> user = <span class="keyword">await</span> getUser()</span><br><span class="line">    <span class="keyword">var</span> amount = <span class="keyword">await</span> getBankBalnce(user);</span><br><span class="line">    <span class="built_in">console</span>.log(amount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Async 函数自身返回的是一个 <code>Promise</code> 所以可以使用 <code>.then</code> 方法</li>
+<li>async/await 并行使用 <code>Promise.all</code>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doulieAfterSec</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(resolve(<span class="number">2</span>), <span class="number">1000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doubleAdded</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    [a, b] = <span class="keyword">await</span> <span class="built_in">Promise</span>.all(doulieAfterSec(), doulieAfterSec())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1><span id="ecmascript-2018">ECMAScript 2018</span></h1><h2><span id="gong-xiang-nei-cun-he-atomics-shared-memory-and-atomics">共享内存和 atomics （shared memory and atomics）</span></h2><p>一个比较高级的特性，还是自行查看作者给出的文章吧</p>
+<ul>
+<li><a href="http://lucasfcosta.com/2017/04/30/JavaScript-From-Workers-to-Shared-Memory.html" target="_blank" rel="noopener">From Workers to Shared Memory — lucasfcosta</a></li>
+<li><a href="https://medium.com/@linclark" target="_blank" rel="noopener">A cartoon intro to SharedArrayBuffers — Lin Clark</a></li>
+<li><a href="http://2ality.com/2017/01/shared-array-buffer.html" target="_blank" rel="noopener">Shared memory and atomics — Dr. Axel Rauschmayer</a></li>
+</ul>
+<h2><span id="mo-ban-zi-fu-chuan-xian-zhi-bei-yi-chu-tagged-template-literal-restriction-removed">模板字符串限制被移除（Tagged Template literal restriction removed）</span></h2><p>在 ES2016 和 ES2016 规范中，模板字符串不允许使用的转义字符，类似<code>\u</code>,<code>\x</code>  </p>
+<p>但是在 ES2018，放宽了这个要求，允许出现这些字符串，你可以定义一个 Object，里面有 <code>cooked</code> 这个属性（也可以是任意一个属性），来表示 “undefined”，然后再定义一个 <code>raw</code> 属性（也可以是任意你想要的名字），将这些 <code>\u</code>,<code>\x</code> 字符存储在 <code>raw</code> 中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myTagFunc</span>(<span class="params">str</span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(str) <span class="comment">// [undefined, raw: [['hi \ubla123abla']]]</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="string">"cooked"</span>: <span class="string">"undefined"</span>, <span class="string">"raw"</span>: str.raw[<span class="number">0</span>] &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = myTagFunc <span class="string">`hi \ubla123abla`</span></span><br><span class="line"></span><br><span class="line">str <span class="comment">// &#123; cooked: "undefined", raw: "hi \ubla123abla" &#125;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="zheng-ze-biao-da-shi-de-dotall-fu-hao-dotall-flag-for-regular-exporession">正则表达式的“dotall”符号（”dotall” flag for Regular exporession）</span></h2><p>在正则表达式中,<code>.</code>符号允许匹配任意字符，但是不匹配换行字符，类似 <code>\n``\r``\f</code>等<br>但是在 ES2018 中，增加了 <code>/first.second/s</code> 中的 <code>/s</code> 标志位来表示<code>.</code>来支持匹配换行字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在不支持之前</span></span><br><span class="line">/first.second/.test(<span class="string">'first\nsecond'</span>); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 ES2018 中</span></span><br><span class="line">/first.second/s.test(<span class="string">'first\nsecond'</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h2><span id="zheng-ze-biao-da-shi-de-ming-ming-fen-zu-bu-huo-regexp-named-group-captures">正则表达式的命名分组捕获（RegExp Named Group Captures）</span></h2><p>提供了类似 Python、Java 等语言中的命名分组（当年用 Python 写爬虫的时候相当好用），语法格式为 <code>(?&lt;name&gt;...)</code>  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原先的命名分组</span></span><br><span class="line"><span class="keyword">let</span> re1 = <span class="regexp">/(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/</span></span><br><span class="line"><span class="keyword">let</span> result1 = re1.exec(<span class="string">'2015-01-02'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(result1) <span class="comment">// ['2015-01-02', '2015', '01', '02', index: 0, input: '2015-01-02', groups: undefined]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用命名分组后</span></span><br><span class="line"><span class="keyword">let</span> re2 = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span></span><br><span class="line"><span class="keyword">let</span> result2 = re2.exec(<span class="string">'2015-01-02'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(result2) <span class="comment">// ['2015-01-02', '2015', '01', '02', index: 0, input: '2015-01-02', groups: &#123; year: '2015',  month: '01', day: '02'&#125;]</span></span><br><span class="line"><span class="built_in">console</span>.log(result2.groups.year) <span class="comment">// 2015</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>\k&lt;group name&gt;</code> 在同一个表达式中表示相同分组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sameWords = <span class="regexp">/(?&lt;fruit&gt;apple|orange)==\k&lt;fruit&gt;/u</span>;</span><br><span class="line"></span><br><span class="line">sameWords.test(<span class="string">'apple==apple'</span>) <span class="comment">// true</span></span><br><span class="line">sameWords.test(<span class="string">'apple==orange'</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>字符串中的命名分组使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 "firstName lastName" 替换为 "lastName, firstName"</span></span><br><span class="line"><span class="keyword">let</span> re = <span class="regexp">/(?&lt;firstName&gt;[A-Za-z]+) (?&lt;lastName&gt;[A-Za-z]+$)/u</span></span><br><span class="line"></span><br><span class="line"><span class="string">'Raja Rao'</span>.replace(re, <span class="string">'$&lt;lastName&gt;, $&lt;firstName&gt;'</span>) <span class="comment">// "Rao, Raja"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="rest-properties-for-objects">Rest properties for Objects</span></h2><p>使用 <code>...</code> 操作符可以将 Object 的剩余未指定的属性进行赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; firstName, age, ...remaining &#125; = &#123;</span><br><span class="line">    firstName: <span class="string">'john'</span>,</span><br><span class="line">    lasttName: <span class="string">'smith'</span>,</span><br><span class="line">    age: <span class="number">20</span>,</span><br><span class="line">    height: <span class="string">'5.10'</span>,</span><br><span class="line">    race: <span class="string">'martian'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">firstName <span class="comment">// john</span></span><br><span class="line">age <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line">remaining <span class="comment">// &#123; lasttName: 'smith', age: 20, height: '5.10', race: 'martian' &#125;</span></span><br></pre></td></tr></table></figure>
+<p>可以用来移除不想要的项</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; firstName, age, ...cleanObj &#125; = &#123;</span><br><span class="line">    firstName: <span class="string">'john'</span>,</span><br><span class="line">    lasttName: <span class="string">'smith'</span>,</span><br><span class="line">    age: <span class="number">20</span>,</span><br><span class="line">    height: <span class="string">'5.10'</span>,</span><br><span class="line">    race: <span class="string">'martian'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// cleanObj 就是你真正想要的属性</span></span><br><span class="line">cleanObj <span class="comment">// &#123; lasttName: 'smith', age: 20, height: '5.10', race: 'martian' &#125;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="spread-properties-for-objects">Spread properties for Objects</span></h2><p><code>...</code> 也可用于合并旧对象创建新对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123; <span class="attr">fName</span>: <span class="string">'john'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> account = &#123; <span class="attr">amount</span>: <span class="string">'$1000'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> personAndAccount = &#123; ...person, ...account &#125;</span><br><span class="line"></span><br><span class="line">personAndAccount <span class="comment">// &#123; fName: 'john', amount: '$1000' &#125;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="zheng-ze-biao-da-shi-de-hui-su-duan-yan-regexp-lookbehind-assertions">正则表达式的回溯断言（RegExp Lookbehind Assertions）</span></h2><p>可以<code>(?&lt;=...)</code>获取以某个特定标识之后的内容，<code>(?&lt;!...)</code>获取非某个特定标识之后的内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">'#winning'</span>.match(<span class="regexp">/(?&lt;=#).*/</span>)[<span class="number">0</span>] <span class="comment">// 'winning'</span></span><br><span class="line"></span><br><span class="line"><span class="string">'A gallon of milk is $3.00'</span>.match(<span class="regexp">/(?&lt;!\$).*/</span>) <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<h2><span id="zheng-ze-biao-da-shi-de-unicode-zhuan-yi-zi-fu-regexp-unicode-property-escapes">正则表达式的 Unicode 转义字符（RegExp Unicode Property Escapes）</span></h2><p>如题，更多内容可以<a href="https://mathiasbynens.be/notes/es-unicode-property-escapes" target="_blank" rel="noopener">点击查看</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//The following matches multiple hindi character</span></span><br><span class="line">/^\p&#123;Script=Devanagari&#125;+$/u.test(<span class="string">'हिन्दी'</span>); <span class="comment">//true  </span></span><br><span class="line"><span class="comment">//PS:there are 3 hindi characters h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//The following matches a single Greek character</span></span><br><span class="line">/\p&#123;Script_Extensions=Greek&#125;/u.test(<span class="string">'π'</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2><span id="promise-prototype-finally">Promise.prototype.finally()</span></h2><p>Promise 增加了一个 <code>finally()</code> 方法，顾名思义，不管是 reslove 还是 reject，最终都会执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'wrong'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val)</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'wrong'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'这里始终会被执行'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2><span id="yi-bu-die-dai-asynchronous-iteration">异步迭代（Asynchronous Iteration）</span></h2><p>顾名思义，一个支持包含异步的迭代 <code>for-await-of</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promises = [</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="number">1</span>)),</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="number">2</span>)),</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="number">3</span>))</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不支持的情况</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> obj <span class="keyword">of</span> promises) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(obj) <span class="comment">// 显示 3 个 Promise 对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 for-await-of</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">await</span>(<span class="keyword">const</span> obj <span class="keyword">of</span> promises) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(obj) <span class="comment">// 显示 1,2,3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test1() <span class="comment">// Promise, Promise, Promise</span></span><br><span class="line">test2()<span class="comment">// 1, 2, 3 ...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>原文链接：<a href="https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e" target="_blank" rel="noopener">https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e</a></p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAAAAAAYplnuAAAC80lEQVR42u2aQW7DMAwE8/9Pu9cikbizcoMePLqkSCxpbJQWd8nXaxjXr/H+3erv3ef72O3xPvdoCC30sPC00bT4tOk1jN1DWXIILXSAJlDpBhLQLsBTcC85hRb6JvQUnLvvyOGR5got9DegpySIJjjT3OZFILTQFJok4ylgaKK1W2tK2KosT+jHQ5Pg+Y/PYzUu9KOhm+T99ABpridDaKET02S6nJiPBJQE/MgjtNABmsJNyfsquFJSRkzJ5Y0ILfQGmh4qzYZ3hAEKUqGFBtAEbhK3KRgnkUyN9I8sT2ihN9DEjLkTSM06k3hYZnhCC72ApkY3LRyl4EpiIz4AoYWe42MUlM1vqeBJgo0YoUILPTGQokzahAbiJJ5JcVVooVvo1JjSGjJTAb8pGn1cL7TQB70lyQRMyT0VrnRtfAoJ/XhoYh6Sm2kNF2r+LH8XWugATczDtjmLNCjSQuqyC0FooQfPvDl1oolSmjGkKUZooRtoclgQuDT/pBlge0gJLTSAJqZjSq6oSKVG43a+0EKH+STpmRKlZMikImnzInilRYR+PHQqyCfxSYzBqxgoURNa6ABNkyPacELBUxBvH5bQQs/v+hiAjXlOC0ykOSU+baGFhv70lOST5tkmOIlIjhOFFhpeSF76pLEqFUVJoXT5MIQWOkCnpJwcHmRz8nCOCvtCCw0aROILPgiEdHNkLXSwCC00NFOI+UhMR2LokBtcKnKhhV5oxFOzPAkKWgRKYmJZJBJa6A10vKgQsKkxq2lSPHYzhRYaHB7UgG9NxalhZRvIQgsdoOn/OTZRQLEpNdmOgkRooYNeTSZ5Er11QT4cbOjgEVroDXTbNEKbrEjjFt2jUuJCPx6a5tqkOEnEKzHwifgVWugJmhQ202Ztop+MyihyhRYa9no0RU5aUKIFpKqhRWihb0AncUCL89Q8RwVQoYX+I2giQFMidVc8CC00gW6LRekQoWKgaYa5XQAV+jHQJEmh8G0QnxSWhBZ6gP4BQjxW9YO6nXsAAAAASUVORK5CYII=" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Translation/Translation/面向用户界面开发的未来（The-Present-Future-of-User-Interface-Development）/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Talk/Talk/2017，再见/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

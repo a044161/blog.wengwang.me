@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="记一次npm package插件开发">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                记一次npm package插件开发 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            记一次npm package插件开发
+              
+          </h1>
+          <p class="posted-on">
+            2017-09-12
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/JavaScript/" rel="tag">
+                  JavaScript
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>github地址：<a href="https://github.com/a044161/pocket-tool" target="_blank" rel="noopener">https://github.com/a044161/pocket-tool</a></p>
+<h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>除了上次的五子棋开发的blog，好像很久没做一些思路的分享了，刚好也借这个机会做一次分享，理一理这次的开发思路。</p>
+<a id="more"></a>
+<h1><span id="wei-he-yao-kai-fa">为何要开发</span></h1><p>在日常的开发中，其实自己经常会用到一些类型的判断，还有dom元素的操作，不想每次都复制来复制去，而且也是使用<code>ES6</code>来进行编写，为何不弄个公用的包呢，于是乎，在开发一个插件的过程中，我就停下来，改为开发一个自己的工具包了，取名为<code>pocket-tool</code>，也能借此机会熟悉一下<code>npm package</code>开发的流程。</p>
+<h1><span id="mu-lu-jie-gou">目录结构</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├─ core // 核心代码</span><br><span class="line">├─ dist // 打包后的文件</span><br><span class="line">├─ test // 单元测试</span><br><span class="line">├─ .babelrc // babel的配置文件</span><br><span class="line">├─ index.js // 入口文件</span><br><span class="line">└─ rollup.config.js // rollup的配置文件</span><br></pre></td></tr></table></figure>
+<p><code>core</code> 中的具体代码不展开说了，因为不是这次的重点。<br><code>dist</code> 是用来专门放置打包后的文件，在单元测试中我也是直接使用该目录下的文件，可能有人会在单元测试中使用<code>index.js</code>，我所想的是，一定要保证打包出来的文件也能够正常通过测试，所以之后可能会把两边同时引入，这样才能保证可靠性。<br><code>test</code>用来放置单元测试相关的内容，这部分会专门写一篇思路，这里不展开。<br><code>index.js</code>这个就是作为入口文件，里面只是引入了<code>core</code>的代码。<br><code>rollup.config.js</code>我这次选用了<code>rollup</code>作为构建工具，因为职责足够单一，足够轻量，也能帮我在打包过程中先移除无用的代码。</p>
+<h1><span id="si-lu">思路</span></h1><p><code>core</code>中根据业务需求对文件进行了拆分<br>例如有个<code>utlis.js</code>的业务代码，内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// core - utils.js </span><br><span class="line"> &lt;some code&gt;</span><br><span class="line"> export default &#123;</span><br><span class="line">     ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后将需要对外开放的内容通过<code>export</code>的方式导出，然后在<code>index.js</code>文件中进行引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// core - index.js </span><br><span class="line"> import Utils from &apos;./utils&apos;;</span><br><span class="line"> </span><br><span class="line"> export default &#123;</span><br><span class="line">    Utils</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>在最外层的入口文件<code>index.js</code>其实只是引入了<code>core</code>中的<code>index.js</code>，这样才能把相关的代码导入到入口文件中，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">import Core from &apos;./core/index.js&apos;;</span><br><span class="line"></span><br><span class="line">export const Utils = Core.Utils;</span><br><span class="line"></span><br><span class="line">export defualt Core;</span><br></pre></td></tr></table></figure></p>
+<p>按照这样的一种结构才能在构建工具中，将所有的文件打包到一个文件中，当用户<code>npm install</code>后，进行引用，其实也是引用<code>index.js</code>文件，最终调用的也是<code>core</code>中的方法。<br>其实还是蛮简单的，不过还是要实践一下，没有最好，只有最适合的。</p>
+<h1><span id="gou-jian-gong-ju">构建工具</span></h1><p>其实在开发的过程中，会不由自主的想到，如果这时用户不是通过<code>import</code>的方式，或者说是不支持<code>ES6</code>的环境下呢，那就需要有一个最终的文件供用户调用。我也想过使用<code>webpack</code>，但是我这样的功能开发，不需要用到<code>webpack</code>那么多强大的功能，又要足够的简单，于是就引入的<code>rollup</code>。<br><code>rollup</code>的配置其实蛮简单的，而且我也只要满足几个需求就好  </p>
+<ul>
+<li>支持<code>Es6</code></li>
+<li>打包为一个文件</li>
+<li>umd方式</li>
+</ul>
+<p>配置如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import babel from &apos;rollup-plugin-babel&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">	input: &apos;./index.js&apos;, // 入口文件</span><br><span class="line">	plugins: [ // 引入插件</span><br><span class="line">		babel(&#123;</span><br><span class="line">			exclude: &apos;node_modules/**&apos;,</span><br><span class="line">			plugins: [&apos;external-helpers&apos;], // babel官方建议的一直方式</span><br><span class="line">			externalHelpers: true</span><br><span class="line">		&#125;)</span><br><span class="line">	],</span><br><span class="line">	output: &#123;</span><br><span class="line">		file: &apos;./dist/pocket-tool.js&apos;, // 输出文件</span><br><span class="line">		name: &apos;pocket-tool&apos;, // 名称</span><br><span class="line">		format: &apos;umd&apos; // 用umd方式</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里就足够我使用了，当然。。。因为这个<code>core</code>的功能是我之前就写好的，所以不存在开发的过程，所以，还漏了开发的方式，之后会进行补充。</p>
+<h1><span id="dan-yuan-ce-shi">单元测试</span></h1><p>这里使用<code>mocha</code>+<code>should</code><br>详见：<a href="https://wengwang.me/Front-end/Front-end/小试单元测试-mocha-should/">https://wengwang.me/Front-end/Front-end/小试单元测试-mocha-should/</a></p>
+<h1><span id="diao-yong-fang-shi">调用方式</span></h1><p>在<code>package.json</code>中添加两个脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">	&quot;build&quot;: &quot;rollup --config rollup.config.js&quot;, // 打包</span><br><span class="line">	&quot;test&quot;: &quot;npm run build &amp;&amp; mocha&quot; // 测试</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到这里，一个<code>package</code>算是完成了，最后再提交到<code>npm</code>，通过命令<code>npm publish</code>，如果没有登录的话，还需要<code>npm login</code>，推送成功后就能在<code>npm</code>中搜索到啦。</p>
+<h1><span id="yi-ge-hao-de-xi-guan-hen-chong-yao">一个好的习惯很重要</span></h1><p>自测！自测！自测！<br>在提交代码之前，一定要自测完全，一种方式是通过测试用例，一种是当做用户去使用，让每次提交都为最完美的一次提交。<br>还有一个点就是，如果你每次要<code>npm publish</code>记得要修改<code>package.json</code>中的<code>version</code>，不然每次都要为了修改一个字段，而重新提交，我已经犯了好多次这样的错误。。。</p>
+<h1><span id="jie-yu">结语</span></h1><p>其实也蛮久没有折腾自己的东西了，每次自己瞎折腾总会发现一些有趣的内容，当然还是要总结一下折腾的过程，这样才算真正折腾了。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAACFUlEQVR42u2ay27DQAwD/f8/3V6b1CsOtyhgbuhLEsO2JoCsB6XrGo4veFzieL+W3FOobKiVIfWw6dqf19zZm+wW6gyo1U13n6vv7+fujKk/WajPgVo9mATa1bMK9blQq3OroLkKqtOLU6jzoKabJ2efCr5VMv5zlVCox0NNtft/fm53M4V6NBRpNOnvyZlVw/DyzEJFQ02OpwLplGSnwEnsFSoXajJMBDDi6MT5X+wW6gioKWi64qwr9KKmoVAxUKTBdMSyXY0edciFioJaOSkp0qjzqmSMs3ehHg3lFPZTYqVDITVoWlYJhYqCosWYEruUAIvzbaGioZQzOgMgOgxHTWqhoqHcQo0I/sqhke1CxULRwp46Ll3WGcW2QsVCWcNm4yVwm4Xb7rhQsVDuwGgHbAKUb16hoqCokO8s/ankjpJ1oaKhnIU/EhSpwIFfpkJFQu0sNbhNAykWC3UGlBK/VPBzFwRt1aVQcVDk5t1FLzLQlMPMQsVBOcNF6ug0sMpFwUJFQ03N4+SUu4K+pQwXKg5KifZKnFfLX2oh55etQh0HRZIqOUcWv+QSTqGioJxmUzm9C7t8fqGioZxhkANARAy1eFGoXKjdIEmG3Soo46WuQsVBqaLe3cCgS6rLP1Goo6GIIUe4RUm4UMdDkSTrLuuMjUWh4qGmYbMa6ih46uBysatQMVA0UZJCkF6DIQqVBvUNa3roWJx7/G0AAAAASUVORK5CYII=" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Others/Others/从GHOST迁移到HEXO（引入-Travis-CI）/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Front-end/Front-end/记一次五子棋开发/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

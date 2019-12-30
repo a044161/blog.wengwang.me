@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="浅入React。 再次">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                浅入React。 再次 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            浅入React。 再次
+              
+          </h1>
+          <p class="posted-on">
+            2015-12-10
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/React/" rel="tag">
+                  React
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>距离上一篇的React已经过去快10天啦，文章的更新速度还是稍慢了一点，一直不知道该按一个什么样的顺序写下来，其实更多的作用只是为了能够学着总结一些知识点，能够有一次好的沉淀机会。好了，闲话不多说。项目在今天也正是上线测试了，这是我在入公司以来接手的第二个项目，虽然之前也有一些类似维护的工作，但是项目才是一个真正补缺补漏，学习新知识的最好方式。先感谢W哥能够给我这次练手React的机会，还有H哥在项目期间对我的各种帮助包括webpack的搭建、思路上的帮助、样式的修复，当然还有两位合作的同学，可爱的交互妹子QY同学、全栈大牛BJ同学，以及我的好组员XX同学、XQ同学，谢谢你们对我这位新人的帮助~希望没有在项目中给你们添麻烦啦~哦哦哦，好像又说多了。。。本来就是为了感谢这些同学，然后顺便写一下这篇分享博文~<br>这次要从以下几点进行分享：  </p>
+<a id="more"></a>
+<ul>
+<li>找到真实的自己ref  </li>
+<li>我要给你生猴子map  </li>
+<li>style也能这样  </li>
+<li>合体mixins  </li>
+<li>风情万种的classSet  </li>
+</ul>
+<h1><span id="zhao-dao-zhen-shi-de-zi-ji-ref">找到真实的自己ref</span></h1><p>React操作的DOM都为虚拟DOM，肯定避免不了需要操作真实的DOM，这是就要依靠ref啦  </p>
+<h4><span id="reactdom-finddomnode">ReactDOM.findDOMNode()</span></h4><p>在<a href="http://facebook.github.io/react/docs/more-about-refs.html" target="_blank" rel="noopener">官方实例</a>中使用的是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    handleClick: function()&#123;</span><br><span class="line">        this.myTextInput.focus();</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input type=&quot;text&quot; ref=&#123;(ref) =&gt;   this.myTextInput = ref&#125; /&gt;</span><br><span class="line">                &lt;input</span><br><span class="line">                     type=&quot;button&quot;</span><br><span class="line">                     value=&quot;Focus the text input&quot;</span><br><span class="line">                     onClick=&#123;this.handleClick&#125;</span><br><span class="line">                /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>其中用到箭头函数<code>=&gt;</code>这个为==ES6==的函数，由于我也还未正式开始学习==ES6==所以就不展开，但是，React配上==ES6==逼格瞬间就上来了，因此接下来也会加紧学习一下==ES6==。所以我在项目中使用的是官方并不是很推荐的用法<code>ReactDOM.findDOMNode()</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    handleClick: function()&#123;</span><br><span class="line">        var node = React.findDOMNode(this.refs.realInputDom);</span><br><span class="line">        console.log(node.value);</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input type=&quot;text&quot; ref=&quot;realInputDom&quot;/&gt;</span><br><span class="line">                &lt;button type=&quot;button&quot; onClick=&#123;this.handleClick&#125;&gt;Click Me&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在==HTML==标签中加入<code>ref</code>属性，这里有一个点要注意一下，<code>ref</code>的值需要是唯一的，也就是说，如果你定义了多个相同的<code>ref</code>只会取到最后一个<code>ref</code>的值，和<code>id</code>有些类似。通过这个方法获取到DOM为真实的DOM，也就是说通过这个操作，会产生一些更大的开销，但是有的时候又需要通过该方法操作DOM，比如一些简单的操作，不需要添加额外的<code>state</code>，来改变节点的<code>innerText</code>值等。当然能够通过虚拟DOM的操作，还是使用虚拟DOM的操作比较好。接下来会结合map，对需要动态生成的==HTML==标签来添加<code>ref</code>。</p>
+<h1><span id="wo-yao-gei-ni-sheng-hou-zi-map">我要给你生猴子map</span></h1><p>在遍历<code>[]</code>或者<code>{}</code>时通过使用<code>map</code>能够很轻松的将想要的数据遍历出来，再进行渲染。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.create(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:[1,2,3,4,5]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        var list = this.state.data.map(function(item, key)&#123;</span><br><span class="line">             return(</span><br><span class="line">                 &lt;li key=&#123;key&#125;&gt;&#123;item&#125;&lt;/li&gt;</span><br><span class="line">             )</span><br><span class="line">        &#125;);</span><br><span class="line">        return(</span><br><span class="line">           &lt;ul&gt;&#123;list&#125;&lt;/ul&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>先定义一个变量<code>list</code>再对你需要遍历的数据使用<code>map</code>，对象为一个函数，其中第一个参数为数据的每个子项，第二个参数<code>key</code>是react建议传入的参数，用来标识每一个子项，不传入也是可以的，只是会有烦人的<code>warning</code>，最后在<code>render</code>中使用<code>{list}</code>，对的，就跟使用正常的变量一样。有兴趣的同学可以<code>console.log(list)</code>会发现里面是有每个<code>&lt;li&gt;</code>。<br>接下来结合<code>map</code>来为每个子项添加<code>ref</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.create(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data:[1,2,3,4,5]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        var list = this.state.data.map(function(item, key)&#123;</span><br><span class="line">             return(</span><br><span class="line">                 &lt;li key=&#123;key&#125; ref=&#123;&apos;li&apos; + key&#125;&gt;&#123;item&#125;&lt;/li&gt;</span><br><span class="line">             )</span><br><span class="line">        &#125;);</span><br><span class="line">        return(</span><br><span class="line">           &lt;ul&gt;&#123;list&#125;&lt;/ul&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>其实很简单的一个思路，加上一个特定的字符串比如我这里添加的<code>li</code>然后再加上<code>key</code>，就能够形成唯一的<code>ref</code>而且还能够轻松的找到顺序，其实<code>key</code>就是每个<code>li</code>的<code>index</code>，在做操作的时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.findDOMNode(this.refs[&apos;li&apos;+1])</span><br></pre></td></tr></table></figure></p>
+<p>更多的可以结合数据使用，比如数组的index其实是和<code>key</code>一一对应的，这样就很容易找到想要的DOM<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var data = [1,2,3,4,5];</span><br><span class="line"></span><br><span class="line">for(var i in data.length)&#123;</span><br><span class="line">    ReactDOM.findDOMNode(this.refs[&apos;li&apos;+i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ref</code>个人觉得非必要的情况下还是不要使用比较好，但是在这次的项目中还是有一些地方用到了，可能是因为前期对React的不熟悉，有些地方更是用了Jquery和js来获取DOM节点。。。。之后要好好修改一下代码。大家别像我这样哈~</p>
+<h1><span id="style-ye-neng-zhe-yang">style也能这样</span></h1><p>对于React中<code>style</code>的定义方式也是让我觉得比较爽得地方，尤其是某些标签在特定条件下的样式变化，又不需要通过改变<code>className</code>。<br>比如，判断用户是否为管理员时显示或隐藏某个标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            isAdmin: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div style=&#123;&#123;&apos;display&apos;: this.state.isAdmin?&apos;block&apos; : &apos;none&apos;&#125;&#125;&gt;who are you&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>通过简单的三元运算符<code>?:</code>来操作一些简单的样式变化，获取可以传入值，根据state的变化，渲染不同的界面，小小的用处还是很不错，不用获取DOM，然后再修改<code>className</code>或通过DOM修改<code>style</code>。</p>
+<h1><span id="he-ti-mixins">合体mixins</span></h1><p>想复用一些函数，或者state。可以通过使用mixins将一些常用的函数，或者state结合到任何一个组件中，先定义一个mixins<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var Tools = &#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            data: [1,2,3,4,5]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    createID: function()&#123;</span><br><span class="line">        var date = new Date();</span><br><span class="line">        return date;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再调用mixins<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var Component = React.create(&#123;</span><br><span class="line">    mixins:[Tools],</span><br><span class="line">    handleClick: function()&#123;</span><br><span class="line">        var _id = this.createID();</span><br><span class="line">        console.log(_id);</span><br><span class="line">        console.log(this.state.data);</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;button type=&quot;button&quot; onClick=&#123;this.handleClick&#125;&gt;Click Me&lt;/button&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>定义一个mixins和定义一个普通的对象是一样的，<code>getInitialState</code>、<code>componentDidMount</code>这些方法也是同样适用的，我比较常用除了定义一些工具函数外，还用来管理ajax。对了，每个mixins的作用域都只在该组件中，是不会跨组件的哟，也就是说，你在某个组件中应用了mixins，然后修改了其中的一个state，在另外一个组件中引用了相同的mixins，这时的state就是默认值了哟。</p>
+<p>#风情万种的classSet<br>个人觉得用来操作复杂的<code>className</code>的神器啊~记得在使用前引入==react-addons==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var ReactAddons = require(&apos;react-addons&apos;);</span><br><span class="line"></span><br><span class="line">var Component = React.createClass(&#123;</span><br><span class="line">    getInitialState: function()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            data:[1,2,3,4,5]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function()&#123;</span><br><span class="line">        var cx = ReactAddons.classSet;</span><br><span class="line">        var list = this.state.data.map(function(item, key)&#123;</span><br><span class="line">            var isFive = (function()&#123; if(item == 5) &#123;return true&#125; else&#123; return false &#125;&#125;)();</span><br><span class="line">            var className = cx(&#123;</span><br><span class="line">                    &apos;five&apos;: isFive</span><br><span class="line">                &#125;);</span><br><span class="line">            return(</span><br><span class="line">                &lt;li className=&#123;className&#125;&gt;&#123;item&#125;&lt;/li&gt;</span><br><span class="line">            )</span><br><span class="line">            </span><br><span class="line">        &#125;);</span><br><span class="line">      return(</span><br><span class="line">          &lt;ul&gt;&#123;list&#125;&lt;/ul&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>用法其实很简单，可以先给<code>ReactAddons.classSet</code>赋变量名，之后传入<code>className</code>比如这里的<code>&#39;five&#39;</code>，同时我定义了一个方法来判断何时使用该<code>className</code>，也就是当<code>=5</code>时，<code>isFive</code>返回<code>true</code>，当传入的<code>className</code>为<code>true</code>时，最后才会被添加到标签中。用来管理比较复杂的<code>className</code>是个不二选择。我在项目中主要用来管理日历上日期的不同标识。</p>
+<h1><span id="jie-yu">结语</span></h1><p>感觉这篇写得没有<a href="wengwang.me/qian-ru-react-ci-2/">浅入React。 一次</a>那篇有感觉。因为研究的还不够深入，所有不知道该分享些什么比较有价值的内容，于是就写了一些在这次项目中用的比较有感觉的方法，接下来会有两个番外篇，一个为日历、一个为滑动块，会尽快将这两个组件抽象出来，达到一个较高的复用，同时也会放上github，还有好多高级技法都没使用到，一个是项目开始的比较突然，对React没有一个深入的了解，会在接下来的代码重构中试着学习一些高级技巧，来完善代码。<br>最后还是要感谢先感谢W哥、H哥、QY同学、BJ同学，XX同学、XQ同学在这次项目中对我的帮助。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAACHElEQVR42u2awW4CMQxE+/8/TXtBArr2vNmqErNMLsBucF6kyLHH/vpaxu1n3D/v4/H50ffXua/2pnd4FCoC6nYwHp+/zpvAt82Q90+2CxUPtR3wbd40d5ozbeTX70JdFsoxrhznZr9Qnw01XdIbuLJfqOtBTRcyhVUBoNqIFSUU6u2hSOLwH59/zmYK9ZZQNzGUE1V26TpPaxYqGko5wC3IOyNeTO9Xj16oOCj3IBJBxEliR8daqGgoEtgr0WNLJCbhBDvmQkVBnTm0JCkg4tqYkBYqGko9nJydWkAVknASWqhIKHJBkgCOimabYy1UNpTrzEjh2imSH/6/UPFQRKwnAd4WyBE7TxFCoWKhNgObMUeUpwJsoa4FRRwcacZxgj+ZzRQqEmproNkS0w3KSRbGikOhYqGoUeJcHbGVNLYWKhuKiq5OszK5vNdNFioaijRxkcvVdbIyYCxUJBRxjkrUJ0UCqxhVqFgomiTQC5scaCWoFSofioiwZwRYeiGP2XGhIqHcm1s5SsdJKuG3UJlQawPoiRqz27xaqOtCkWYaJeSrDWHhv1DRUGcaszZBlSSoVgNQoeKgaKOyap4gG6MCf6GyoZyCtOM4iUhSqOtCOcUh1IAsklsi9BcqH0odcOLw3KZDK1wo1GWgzohq5FJWaxXqs6BcsUMFiIfrFSoeilzIREhV4gUReAuVD+U4NnLInYI2zmIKlQL1DcFyack0r8LJAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Talk/Talk/2015，我的一个回眸/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Talk/Talk/分工合作那点事/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

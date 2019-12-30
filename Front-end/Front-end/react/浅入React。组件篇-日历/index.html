@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="浅入React。组件篇-日历">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                浅入React。组件篇-日历 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            浅入React。组件篇-日历
+              
+          </h1>
+          <p class="posted-on">
+            2016-01-21
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/React/" rel="tag">
+                  React
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>感觉拖延症各种泛滥，好久没更新了。。。而且也在上一篇的结尾提到要写一次日历组件的分享，恩，今天就写一下~一开始想把之前写的日历代码重构一下，后来发现。。还是重新写一个日历吧~哈哈哈。因为之前写的都是为了满足当时的需求，各种东拼西凑，然后今天就打算重新写一下，功能没有之前那么多，现在是先把简单的日历实现，之后会预留一些配置选项，其中包括每天的状态对应不同的样式、日期的选择操作（单日、多日）、星期的排列方式（一到日、日到六）等一些我能够想到的小功能。这次主要提一下我的整体实现思路。其实我的最终目的是想要创建一个属于自己的react组件库，希望能够从这日历开始，不断完善这个组件库。</p>
+<a id="more"></a>
+<h1><span id="huan-jing">环境</span></h1><p>gulp+webpack<br>关于这两个的配置我也用的不是很好，其中使用gulp起webpack-dev-server，还想趁这次用一下es6最后还是考虑之后的事情，并没有使用。具体的配置可以看<a href="https://github.com/a044161/react-component" target="_blank" rel="noopener">github</a>，gulp和webpack的配置文件也写的很渣~还请大家轻喷~哈哈~没有去完善这一部分，后续也会捣腾一下gulp和webpack~<code>gulp server</code>就能起服务了，然后访问<code>127.0.0.1:7777</code></p>
+<h1><span id="mu-lu-jie-gou">目录结构</span></h1><p>（实在不懂怎么在markdown上话目录结构树，简单的用文字说明一下吧）<br>包含两个文件夹<br><code>static</code>用来存放静态页，也就是页面重构的目录，先从这边重构页面，再迁移到react<br><code>react</code>用来存放编写react的文件，也就是多了<code>jsx</code>，其中<code>jsx</code>就是用来存放react代码文件，又将安装不同的组件分了不同的文件夹，现在只有一个<code>calendar</code><br>在写该组件时，我又将其分为了<code>_storeCalendar.jsx</code>用来管理日历的全局state，<code>Calendar.jsx</code>想要让它成为日历的数据组件，但是还没想到好的方式把ui部分剥离出来，<code>CalendarBody.jsx</code>就是日历的主体部分，其中不涉及任何数据的操作，只有使用props的数据，生成相应的view</p>
+<h1><span id="zheng-ti-shi-xian-si-lu">整体实现思路</span></h1><p>我最早是先重构日历，找了个还比较喜欢的日历ui，然后重构。<br>然后开始想需要哪些数据作为全局的state，基于之前做的日历，我定义了这几个全局的state：<code>toDay:{yyyy: &#39;&#39;, mm: &#39;&#39;, dd: &#39;&#39;, ymd: &#39;&#39;, md: &#39;&#39;}</code>用来存放当前的设置的日期、<code>monthEn: [&#39;January &#39;, &#39;February&#39;, &#39;March&#39;, &#39;April&#39;, &#39;May&#39;, &#39;June&#39;, &#39;July&#39;, &#39;August&#39;, &#39;September&#39;, &#39;Octorber&#39;, &#39;November&#39;, &#39;December&#39;]</code>这个就自己决定啦，对应不同月份的英文而已、<code>weeksArray:[]</code>用来存放当前月份下每周的具体数据（这个比较重要）<br>定义了几个方法:<code>getNowDate</code>获取当前时间、<code>createMonthArray</code>生成当前年份月份下的具体日期，就是<code>weeksArray</code>的来源、<code>handlePreMonth,handleNextMonth</code>这个就是前一个月和后一个月的事件函数了。<br>重点说一下<code>createMonthArray</code>。一开始一直在想要怎么生成日历，日历的日期和星期该如何对应。之后想到了数组，也就是一周对应一个数组，让月成为一个二维数组，将周push到月。每周有7天，对应数组里面的七个项。顺着这个思路下去就可以将日历的日期和星期的对应关系理清了，也就是一行为一周、一周为一个数组。下面是具体的代码实现，采用了<code>moment.js</code>来管理日期。</p>
+<pre><code class="javascript"><span class="keyword">var</span> weekArray = []; <span class="comment">// 存放一周的天数</span>
+<span class="keyword">var</span> weeksArray = []; <span class="comment">// 存放一整个月的天数，一个子数组为一周</span>
+
+<span class="keyword">var</span> _moment = <span class="keyword">new</span> moment(); <span class="comment">// new moment 才能保证设置年、月等属性时是有效的</span>
+<span class="keyword">var</span> toDay = <span class="keyword">this</span>.state.toDay;
+
+<span class="keyword">var</span> _year = year? year : toDay.yyyy;
+<span class="keyword">var</span> _month = month? month : toDay.mm;
+
+_moment.set({<span class="string">'year'</span>: _year, <span class="string">'month'</span>: _month}); <span class="comment">// 设置年、月</span>
+
+<span class="keyword">var</span> days = _moment.daysInMonth(); <span class="comment">// 获取当前月份下的天数</span>
+
+<span class="keyword">var</span> dayInfo = {}; <span class="comment">// 初始一个每天的详情对象</span>
+
+<span class="keyword">for</span>(<span class="keyword">var</span> d=<span class="number">1</span>; d&lt;days+<span class="number">1</span>; d++){ <span class="comment">// 根据当前月份的天数生成，日期对应星期的数组</span>
+
+    _moment.set(<span class="string">'date'</span>, d);  <span class="comment">// 设置日期</span>
+
+    <span class="keyword">var</span> day = _moment.day(); <span class="comment">// 获取星期</span>
+
+    dayInfo.yyyy = _year; <span class="comment">// 年</span>
+    dayInfo.mm = _month; <span class="comment">// 月</span>
+    dayInfo.dd = d; <span class="comment">// 日</span>
+    dayInfo.day = day; <span class="comment">// 星期</span>
+    dayInfo.ymd = _moment.format(<span class="string">'YYYY-MM-DD'</span>); <span class="comment">// 年-月-日</span>
+
+    <span class="keyword">if</span>(day == <span class="number">6</span>){ <span class="comment">// 判断是否为星期六 为周六则需要结束该子数组</span>
+        weekArray[day] = dayInfo;
+        weeksArray.push(weekArray.concat());
+        weekArray = [];
+    }<span class="keyword">else</span> <span class="keyword">if</span>(d==days){ <span class="comment">// 判断是否为最后一天 最后一天也需要结束该子数组</span>
+        weekArray[day] = dayInfo;
+        weeksArray.push(weekArray.concat());
+    }<span class="keyword">else</span>{
+        weekArray[day] = dayInfo;
+    }
+
+    dayInfo = {}
+
+}
+
+<span class="keyword">for</span>(<span class="keyword">var</span> w <span class="keyword">in</span> weeksArray){ <span class="comment">// 将为空的部分填充上空</span>
+    <span class="keyword">for</span>(<span class="keyword">var</span> d=<span class="number">0</span>; d&lt;<span class="number">7</span>; d++){
+        <span class="keyword">if</span>(<span class="keyword">typeof</span>(weeksArray[w][d]) == <span class="string">'undefined'</span>){
+            weeksArray[w][d] = <span class="string">''</span>;
+        }
+    }
+}
+
+<span class="keyword">this</span>.setState({<span class="attr">weeksArray</span>: weeksArray})
+</code></pre>
+<p>当<code>weeksArray</code>生成之后就将其传入<code>CalendarBody</code>，在<code>CalendarBody</code>分为两步走，第一是先渲染一周里的每天、然后再渲染每一周，具体代码如下</p>
+<pre><code class="javascript">renderDay: <span class="function"><span class="keyword">function</span>(<span class="params">day, key</span>)</span>{ <span class="comment">// 渲染每一天</span>
+        <span class="keyword">var</span> toDay = <span class="keyword">this</span>.props.calendarState.toDay;
+
+        <span class="keyword">var</span> cx = ReactAddons.classSet;
+
+        <span class="keyword">var</span> isToday = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+            <span class="keyword">if</span>(toDay.ymd == day.ymd){
+                <span class="keyword">return</span> <span class="literal">true</span>;
+            }<span class="keyword">else</span>{
+                <span class="keyword">return</span> <span class="literal">false</span>;
+            }
+        }
+
+        <span class="keyword">var</span> dayClass = cx({
+            <span class="string">'day-item'</span>: <span class="literal">true</span>,
+            <span class="string">'now'</span>: isToday()
+        })
+
+        <span class="keyword">return</span>(
+            &lt;li className={dayClass} key={key} data-yyyy={day.yyyy} data-mm={day.mm} data-dd={day.dd} data-day={day.day} data-ymd={day.ymd}&gt;{day.dd}&lt;<span class="regexp">/li&gt;</span>
+<span class="regexp">        )</span>
+<span class="regexp">    },</span>
+<span class="regexp">    renderWeek: function(week, key){ /</span><span class="regexp">/ 渲染每一周</span>
+<span class="regexp">        var day = week.map(this.renderDay)</span>
+<span class="regexp">        return(</span>
+<span class="regexp">            &lt;ul key={key} className="day-list"&gt;</span>
+<span class="regexp">                {day}</span>
+<span class="regexp">            &lt;/u</span>l&gt;
+        )
+    },
+    render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+        <span class="keyword">var</span> weeksArray = <span class="keyword">this</span>.props.calendarState.weeksArray;
+        <span class="keyword">var</span> week = weeksArray.map(<span class="keyword">this</span>.renderWeek)
+        <span class="keyword">return</span>(
+            &lt;div&gt;
+                {week}
+            &lt;<span class="regexp">/div&gt;</span>
+<span class="regexp">        )</span>
+<span class="regexp">    }</span>
+</code></pre>
+<p>至此，一个简单的日历就搞定啦~</p>
+<h1><span id="jie-yu">结语</span></h1><p>希望不要再犯拖延症，早日能够完善组件库，还有好多地方没有剥离出来，包括文件的结构，会不断的完善，最后是<a href="https://github.com/a044161/react-component" target="_blank" rel="noopener">github</a>地址。欢迎随时交流~最后一句~祝我顺利完成毕业设计吧~~</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAAChUlEQVR42u2ay1ZDMQwD7///9IUNnD5ia5TCJlY20JYkU07typavq1n393p9/LNWr9O9j/sfH2+tQB4JeS9WBdFdUp1TQXfnvcEHchxkd8Dqwgrw9ffuNfVPCWQgV5BdXq0gqudW9wUykLuB4yZ1R0AEMpArSCpKlfhwBe6fqKBAHgdJP9D//fOjajGQx0DeYlWCggrk1X569+++QI6CrC51ErQStI7AKIMpkGMgVYOJXESaAfSMJWggR0F2jfsOVhVnTrO/C5pllAfyaMhOELjitAoelbBlkAVyFCRtDjgVHflbEpBvojeQYyDdjV0RRQqvHcMqkPMglXnpfMAdw5MOngRyDqS6VCX0tsmkDCTx3FNXLZBjIJUB2cFRA1OZVyqpB3I2JBkScYKGFF3oDQVyFGQnTKlZRIx3NaiETYFAHg3ZHUwKfmVOOaK4PC+QIyHVAAdp+ivzant6JZDjIMlgGynUFJBr0gdyJiQZFiHB88lenNwDOQayE7nqUiIglPBVBkIgA0k2kWFOMjTSJfu2iRrIMZDSJb364U46GEeEx/LbJpDHQ+4cQMwltY80v7BDFcijIIkgpY0DlZCJIGkFRiBHQJJhIvkum4DrmvvKLA3kXEhqTqIhTPCG6UDTm9kUyBGQTuImQeQEDzFLAzkPkg4nuYMgO6K5PCuQ4yBpcJAGgTJDSfPBauoH8kjIbu0Y92pAjoqMS30LBPJIyJ35DNL8dIxSZDYFchQk+cJXJpITCKTwa5uogRwB6Qw0qSZAFwROom4diECOhVSB4g6AKNEhB0UCGUijeHIbB8j4dAMnkMdAqgKMNk1pUbY1UBfIMZBOIUaaCioo1VAUCqRAngr5BZ/gX26Y2EDaAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Talk/Talk/入职半年小感/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Talk/Talk/2015，我的一个回眸/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

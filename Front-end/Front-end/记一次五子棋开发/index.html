@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="记一次五子棋开发">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                记一次五子棋开发 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            记一次五子棋开发
+              
+          </h1>
+          <p class="posted-on">
+            2017-07-29
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/JavaScript/" rel="tag">
+                  JavaScript
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>线上demo： <a href="https://a044161.github.io/fir/" target="_blank" rel="noopener">https://a044161.github.io/fir/</a></p>
+<p>这次开发中采用的是自己还未完成的一个脚手架，主要是之前为了给自己的side project来弄的一个，但是还没完善，这次就匆忙的使用上了，在使用的过程中也要遇到一些问题，比如：</p>
+<ul>
+<li>无法直接饮用通过访问目录的方式直接引入index.js，而是要 <code>import x from &#39;x/index&#39;</code>;</li>
+<li>还有一个就是对象的<code>...</code>运算符竟然无法使用</li>
+</ul>
+<p>其它的问题暂时没有发现。</p>
+<a id="more"></a>
+<h1><span id="yun-xing-fang-shi">运行方式</span></h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line"></span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<p>运行成功后，访问<code>localhost:3000</code>即可。</p>
+<h1><span id="gong-neng-dian">功能点</span></h1><ul>
+<li>悔棋</li>
+<li>重新开始</li>
+</ul>
+<h1><span id="mu-lu-jie-gou">目录结构</span></h1><h3><span id="js-gt-fir">js &gt; fir</span></h3><p>用于存放这次的主要代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|____core // 用于存放核心代码（目前只有计算五子连珠，之前考虑还要用于存放机器人部分）</span><br><span class="line">| |____calculate.js // 用于计算是否五子连珠</span><br><span class="line">|____fir.js // 入口文件</span><br><span class="line">|____modules</span><br><span class="line">| |____dom.js // 操作dom</span><br><span class="line">| |____templates // html模板</span><br><span class="line">| | |____col.js // 列模板</span><br><span class="line">| | |____frame.js // 主结构模板</span><br><span class="line">| | |____index.js // 引用模板的主函数</span><br><span class="line">| | |____point.js // 棋子模板</span><br><span class="line">| | |____row.js // 行模板</span><br><span class="line">| |____utils.js // 用于存放工具类的方法</span><br></pre></td></tr></table></figure>
+<h3><span id="css">css</span></h3><p>用于存放样式文件，时间仓促，只用了一些基本的样式</p>
+<h1><span id="si-lu-fen-xi">思路分析</span></h1><p>对思路进行简要的一些分析</p>
+<h3><span id="ye-mian-jie-gou-sheng-cheng">页面结构生成</span></h3><p>虽然说五子棋盘的规格为 <code>15*15</code> 但是在设计的时候，考虑到可以自行设置棋盘的大小，所以在这部分，都通过使用模板进行生成。</p>
+<h4><span id="wei-mo-ban-xuan-ran">伪模板渲染</span></h4><p>一开始的想法是可以加入模板引擎，可以赋值，控制类名，数据绑定等，能够腾出来的时间不多，所以这部分就放弃了，改用es6的模板语法来弄。<br>创建一个用于存放模板的文件夹<code>templates</code>，里面有个 <code>index.js</code> 文件是用来引入模板，以及通过传递进来的key进行获取模板，渲染模板。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> col <span class="keyword">from</span> <span class="string">"./col"</span>; <span class="comment">// 各模板文件</span></span><br><span class="line"><span class="keyword">import</span> row <span class="keyword">from</span> <span class="string">"./row"</span>;</span><br><span class="line"><span class="keyword">import</span> point <span class="keyword">from</span> <span class="string">"./point"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> frame <span class="keyword">from</span> <span class="string">"./frame"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TPL_OBJ = merge(col, row, point, frame); <span class="comment">// ...运算符无法使用，就写了一个用于合并对象的方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (type, data) =&gt; &#123;</span><br><span class="line">	<span class="keyword">if</span> ( <span class="comment">// 通过type来查找模板，data是用于传入模板内的参数</span></span><br><span class="line">		<span class="keyword">typeof</span> TPL_OBJ[type] === <span class="string">"function"</span></span><br><span class="line">	) &#123;</span><br><span class="line">		<span class="keyword">return</span> TPL_OBJ[type](data);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>以<code>point.js</code>模板文件为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const point = data =&gt; &#123; </span><br><span class="line">    const style = data.style ? data.style : &#123;&#125;; // 自定义属性</span><br><span class="line">    </span><br><span class="line">    return `&lt;div class=&quot;fir__point__block&quot; </span><br><span class="line">    data-point=&quot;[$&#123;data.x&#125;,$&#123;data.y&#125;]&quot; </span><br><span class="line">    style=&quot;width: $&#123;style.width&#125;; height: $&#123;style.height&#125;; left: $&#123;style.left&#125;; top: $&#123;style.top&#125;;&quot;&gt;&lt;/div&gt;`</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    point</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>开发人员自己定义相关的数据，来传入到模板类，可以是其它html字符串，或者样式，但是不支持绑定事件，之后再通过函数调用模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tpl(&quot;point&quot;, &#123;</span><br><span class="line">    x: current_row, // 横坐标</span><br><span class="line">    y: current_col, // 纵坐标</span><br><span class="line">    style: &#123;</span><br><span class="line">        // 大小以及偏移值</span><br><span class="line">        width: `$&#123;PointSize&#125;%`,</span><br><span class="line">        height: `$&#123;PointSize&#125;%`,</span><br><span class="line">        top: `$&#123;current_top&#125;%`,</span><br><span class="line">        left: `$&#123;current_left&#125;%`</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>返回值为html字符串，还需要通过<code>innerHTML</code>方式写入到页面中。<br>这大概就是这次模板渲染的方式，一些细节的代码在<code>fir.js</code>中的<code>createRow() createCol() createPoint()</code>中。</p>
+<h4><span id="xia-qi-si-lu">下棋思路</span></h4><p>其实一开始纠结该如何放置棋子的问题思考了好久，最终还是向页面中的每个交点都放置一个dom元素做了妥协，没有想到其他的可以减少dom元素的方式，想通过样式来解决，但是无法解决点击位置的问题。<br>通过定义了两个数组来辅助下棋<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firBoard = []; // 计算五子连珠的数组</span><br><span class="line">squence = []; // 记录下棋的顺序</span><br></pre></td></tr></table></figure></p>
+<h5><span id="sheng-cheng-qi-zi">生成棋子</span></h5><p>先生成棋子，每个棋子的dom中用了<code>data</code>的属性，增加了一个<code>data-point</code> 用于标记棋子的坐标，在纠结是用从0开始计算还是1开始计算时，选择了1，因为棋盘中的计算方式是从1开始。这时在放置棋子的外围容器上，我注册了一个点击事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on(firPointWrapper, &quot;click&quot;, this.handleChessClick.bind(this));</span><br></pre></td></tr></table></figure></p>
+<p>同时将下棋的方法又剥离出来，可以用于之后机器人下棋时进行直接调用，<code>handleChessClick</code>其实包含了下棋的函数。<br>当点击时，先去获取坐标所对应在计算五子连珠数组中的索引值，然后再对棋子添加样式，这是再去调用计算方法<code>calculate.count</code>去计算是否有五子连珠，并往下棋队列中添加棋子信息。<br>到这里为止就会生成棋子了，一个是数据，一个是页面，其实页面上就是增加一个类名而已。</p>
+<h5><span id="ji-suan-fang-fa">计算方法</span></h5><p>分为三种计算方式：横、竖、对角线。其实横、竖比较类型，我也提取了公用的方法出来，对角线的比较麻烦。横、竖各需要按照两个方向来计算，对角线则要四个方向，但是两个两个是一对。<br>我还写了一个方法，用来获取坐标所对应计算五子连珠数组的索引值<code>getPointIndex</code>，当下了一个棋子后，则在数组相应的位置赋上值，之前索引没有值的话，就会被自动填充为<code>undefined</code>，比较麻烦的就是要考虑遇到其中断开的，其实就是遇到<code>undefined</code>时的计算，我所做的处理就是，如果遇到了<code>undefined</code>这个方向上之后我就不去计算了。<br>核心就是，先找到各个方向上，下个点的索引值，以及边界问题，获取两个端点的坐标。通过坐标和数组索引的方式就能很快的进行计算了，因为每个坐标都对应了一个索引值，我只要找了下一个点的索引值，我就能得到值，将值进行相加，大于4或者小于-4则说明五子连珠了。具体的实现在<code>calculate.js</code>中。</p>
+<h5><span id="hui-qi-he-chong-xin-kai-shi">悔棋和重新开始</span></h5><p>这两个点比较简单。<br>悔棋是依托之前定义的下棋序列的数组，只要获取最后一个数组元素就好，里面可以取到对应的坐标和值，通过坐标获取索引，然后再计算五子连珠的数组中置为<code>undefined</code>即可，再通过元素选择器，里面已经有坐标信息了，所以<code>[data-point=&quot;[${pre_step.point}]&quot;]</code>就能获取到了，再移除样式就好。<br>重新开始就是将各个数据还原就好</p>
+<h5><span id="qi-ta">其它</span></h5><p>在项目中我写了两个减少工作量的js，一个是操作dom元素的<code>dom.js</code>，还有一个是包含工具的<code>utils.js</code>。<br><code>dom.js</code>里面包含了：</p>
+<ul>
+<li><p>获取dom元素</p>
+</li>
+<li><p>增加/删除类名</p>
+</li>
+<li><p>增加/移除事件监听器</p>
+</li>
+<li><p>获取dataset</p>
+</li>
+</ul>
+<p><code>utils.js</code>里面包含了：</p>
+<ul>
+<li><p>判断是否为对象</p>
+</li>
+<li><p>判断是否为数组</p>
+</li>
+<li><p>判断是否为undefined</p>
+</li>
+<li><p>判断是否为null</p>
+</li>
+<li><p>合并对象</p>
+</li>
+</ul>
+<p>这次也是想到说已插件的形式来开发，可以根据挂载的元素，来生成棋盘，这样可以在很多地方调用，所以在页面中是这样调用的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">new FIR(&#123;</span><br><span class="line">    id: &apos;FIR&apos; // 元素id</span><br><span class="line">    size: 14 // 棋盘大小</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h4><span id="nan-dian">难点</span></h4><ul>
+<li><p>棋盘布局上，这次都采用了百分比的计算方式，因为能够适应多种场景比如外容器的宽高，棋子的数量，以及没想到办法来解决dom元素数量的方式。</p>
+</li>
+<li><p>模板使用上一直没有达到最理想的状态，通过数据绑定的方式来渲染模板，最终只能选用了开发时间最短的一种方式来编写模板，因为这样才能根据自己的需要来生成相对应的模板，比如不同棋子数量时，棋子的元素数量也不同，网格的数量也不同。</p>
+</li>
+<li><p>计算五子连珠，这应该是最麻烦的部分，因为可能性太多，要考虑的也比较多，先是进行纸上的模拟找规律，之后再考虑计算方式上有没有办法优化，在计算方式上面的优化是想到，3个方式的计算，我要尽可能的减少循环数组的次数，于是我都把横、竖计算的<code>for</code>调整为了一个，次数为5次，每次循环都计算一个方向上两个不同维度的值，只有对角线的比较麻烦，因为要计算边界的情况，所以多了一个<code>for</code>循环。</p>
+</li>
+<li><p>采用索引和坐标的关系来保证数据的利用率，其实在其他框架中，比较好的一个想法就是用数据驱动模型，这次在开发过程中也一直想要往这方向上靠拢，保证依托数据来完成相对应的操作。就像通过坐标来查找数组索引，通过坐标来控制样式等。</p>
+</li>
+</ul>
+<h4><span id="xiao-yi-han">小遗憾</span></h4><p>没有写一个watch来监听数据的变化，再反应到样式中。以及样式、交互没有优化。</p>
+<h1><span id="jie-shu-yu">结束语</span></h1><p>每天晚上花了一些时间来弄，上班的时候也有在思考一些思路，都尽可能的从简洁，代价低的方向上去思考，整个完成时间大概是3-4个晚上，样式和交互没有时间做优化了，这次的重心还是放在了开发逻辑功能上。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAACFklEQVR42u2awY6EMAxD+f+fnt3jCjXxS5cD7riXGaFSHlJJaifX1YzP77j/3v//vfZ37n3+/Z5rdwTKAuqzGPcH0DXUy6yuL2EDZQ/VbfDVwh3Maq0KtpobqHOhKsDu4ep6oL4bqgqwZBNX8wP1HVDVIlVSJYlWBc3tU0KgXg81EQ5P/j6mZgL1KqgPGCrgqfs6Ubq8L1DWUJ0omIhNZXpU18qNHyhbqJ1kLDepECHy4BioI6CIIaEWo1DyxQNlDUXM+87goMKhC6bLFwqULZQyyIh47BLzjmgN1BlQk0OaKjpSY6QM1IGyhqLmFTX8OxGqigTLk0KgbKG6QEnMfVKYnCT3QPlC0UIQCaLEeFWiN1BnQFHBSeDoR9GK00DZQxEj/oliEgm6l1LFgXo9lEq+xLigwlM15wTqDKjJgkpYSOMC1rIDdR4U3egEgH4cKCEHygJq0phMAKiRocRvoHyhyEZXSXpiZKCGwEDZQ1ExQBdXARR9dYGyhaJFRtoMqASnEhxldTRQVlDdJiWGxCQAU+MtUN5QpNlq0kBBmydGBn+g7KGomJwUnMgIlD8UfYgyOSZFJ+y6BMoSinwJxMAnwfY/xaRAeUGRIKgMtIkgIMIjUP5Qu2f2J8Vp2dQcqGOhdoqRymNti0WBOhKKND/QJEyTeqDOgKJBkCbknXmtWxsoKyhaC+xMjE4YqMawEVig3g71AwIvZva+gdrJAAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Front-end/Front-end/记一次npm-package插件开发/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Front-end/Front-end/小试单元测试-mocha-should/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

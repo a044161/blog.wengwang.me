@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Description-->
+    
+            <meta name="description" content="something about me, something about everything.">
+            
+
+                <!--Author-->
+                
+                    <meta name="author" content="翁旺">
+                    
+
+                        <!--Open Graph Title-->
+                        
+                            <meta property="og:title" content="瞎定一个团队的数据可视化大屏开发规范">
+                            
+                                    <!--Open Graph Description-->
+                                    
+                                            <meta property="og:description" content="something about me, something about everything.">
+                                            
+                                                <!--Open Graph Site Name-->
+                                                <meta property="og:site_name" content="翁旺">
+                                                <!--Type page-->
+                                                
+                                                    <meta property="og:type" content="article">
+                                                    
+                                                            <!--Page Cover-->
+                                                            
+
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+                                                                        <!-- Title -->
+                                                                        
+                                                                            <title>
+                                                                                瞎定一个团队的数据可视化大屏开发规范 - 翁旺
+                                                                            </title>
+
+
+                                                                            <link rel="shortcut icon" href="https://oss.wengwang.me/images/ww_header.jpg">
+
+                                                                            <!-- Custom CSS/Sass -->
+                                                                            <link rel="stylesheet" href="/css/style.css">
+                                                                                <!-- baidu_analytics start -->
+                                                                                <script>
+                                                                                    var _hmt = _hmt || [];
+                                                                                    (function () {
+                                                                                        var hm = document.createElement(
+                                                                                            "script");
+                                                                                        hm.src =
+                                                                                            "https://hm.baidu.com/hm.js?61a517503c0b6fbcf3915c27c09b1e06";
+                                                                                        var s = document.getElementsByTagName(
+                                                                                            "script")[0];
+                                                                                        s.parentNode.insertBefore(
+                                                                                            hm, s);
+                                                                                    })();
+                                                                                </script>
+                                                                                <!-- baidu_analytics end -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://oss.wengwang.me/images/ww_header.jpg" alt="翁旺" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/daily">
+                
+                  Daily
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            瞎定一个团队的数据可视化大屏开发规范
+              
+          </h1>
+          <p class="posted-on">
+            2019-03-24
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Data Vision/" rel="tag">
+                  Data Vision
+                </a>
+                
+                  
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1><span id="kai-pian-xian-che">开篇闲扯</span></h1><p>算是上篇的延续吧，选定了技术方案，就开始撸码了，经过一个星期的写代码，大概能够找到那么一点感觉，果然没有先一股脑的先投入去研究怎么写一个数据可视化大屏开发的框架，而是先从写一个大屏的代码开始，逐步去研究如何写一个大屏，写一个数据数据可视化大屏需要哪些准备之类的。好歹也经过了一周的撸码，大致也有了一定的规范，接下来就来好好扯一扯。</p>
+<a id="more"></a>
+<h1><span id="yi-dui-chu-bu-ding-yi-de-gui-fan-lai-xi">一堆初步定义的规范来袭</span></h1><h2><span id="mu-lu">目录</span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- public  <span class="comment">#公共资源文件，暂定为打包目录</span></span><br><span class="line">- src <span class="comment"># 主文件夹</span></span><br><span class="line">    - components <span class="comment"># 公共组件</span></span><br><span class="line">        - Charts <span class="comment"># 图标相关组件</span></span><br><span class="line">            - Echarts <span class="comment"># 使用 Echarts 编写的图表组件</span></span><br><span class="line">            - AntV <span class="comment"># 使用 Antv 编写的图表组件</span></span><br><span class="line">            - D3 <span class="comment"># 使用 D3 编写的图表组件</span></span><br><span class="line">        - Elements <span class="comment"># 页面元素组件</span></span><br><span class="line">            - Audio <span class="comment"># 音频元素组件</span></span><br><span class="line">            - Border <span class="comment"># 边框元素组件</span></span><br><span class="line">            - Box <span class="comment"># 盒容器元素组件</span></span><br><span class="line">            - Decroate <span class="comment"># 装饰元素组件</span></span><br><span class="line">            - Image <span class="comment"># 图片元素组件</span></span><br><span class="line">            - Text <span class="comment"># 文本元素组件</span></span><br><span class="line">            - Title <span class="comment"># 标题组件</span></span><br><span class="line">            - Video <span class="comment"># 视频元素组件</span></span><br><span class="line">        - SVG <span class="comment"># 使用SVG绘制的元素组件</span></span><br><span class="line">    - group <span class="comment"># 分组</span></span><br><span class="line">    - libs <span class="comment"># 公用脚本</span></span><br><span class="line">    - App.html <span class="comment"># 主页面</span></span><br><span class="line">    - main.js <span class="comment"># 主文件</span></span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ol>
+<li>src 的下一级目录都用小写，再下一级的目录统一采用大写字母开头；</li>
+<li>组件相关类的都是用组件名称进行命名，例如：<code>Elements/Decroate/Decroate-1/Decroate-1.html</code>代表一个元素组件下装饰组件，若无法给组件命名，则统一使用需要序号进行命名，例如：<code>Decroate-1/Decroate-1.html</code>；</li>
+<li>在开发完成后，同级目录下增加一个<code>example.png</code>作为组件的示意图。</li>
+</ol>
+<h2><span id="zu-jian-bian-xie">组件编写</span></h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dui-text"</span> <span class="attr">style</span>=<span class="string">&#123;styles&#125;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"scss"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  .dui-text &#123;</span></span><br><span class="line"><span class="undefined">    position: absolute;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> buildStyle <span class="keyword">from</span> <span class="string">'../../../libs/buildStyle.js'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">    computed: &#123;</span></span><br><span class="line"><span class="javascript">      styles: <span class="function">(<span class="params">&#123;x=<span class="number">0</span>, y=<span class="number">0</span>, style=&#123;&#125;&#125;</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> buildStyle(&#123;</span></span><br><span class="line"><span class="javascript">          top: <span class="string">`<span class="subst">$&#123;y&#125;</span>px`</span>,</span></span><br><span class="line"><span class="javascript">          left: <span class="string">`<span class="subst">$&#123;x&#125;</span>px`</span>,</span></span><br><span class="line"><span class="undefined">          ...style</span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">  </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>组件中必须包含<code>x</code> <code>y</code>，分别代表 <code>left</code> <code>top</code>；</li>
+<li>如果有宽度的设置则必须使用 <code>width</code> 作为 props 进行传递；</li>
+<li>其它样式的修改则使用<code>style</code>作为props进行传递；</li>
+<li>多个组件进行组合而成的应该新元素建议放在 <code>Box</code>中，如下：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Box-1.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dui-box-1"</span> <span class="attr">style</span>=<span class="string">"top: &#123;y&#125;px; left: &#123;x&#125;px; width: &#123;widthVal&#125;px"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Border1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"dui-box-1-title"</span>&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dui-box-1-middle"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dui-box-1-middle-left"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Decroate4</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dui-box-1-middle-right"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"dui-box-1-middle-right-text"</span>&gt;</span>&#123;value&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dui-box-1-bottom"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Decroate5</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Border1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"scss"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  .dui-box-1 &#123;</span></span><br><span class="line"><span class="undefined">    position: absolute;</span></span><br><span class="line"><span class="undefined">    .dui-box-1-title &#123;</span></span><br><span class="line"><span class="undefined">      text-align: right;</span></span><br><span class="line"><span class="undefined">      color: #1f6396;</span></span><br><span class="line"><span class="undefined">      font-size: 12px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .dui-box-1-middle &#123;</span></span><br><span class="line"><span class="undefined">      overflow: hidden;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .dui-box-1-middle-left &#123;</span></span><br><span class="line"><span class="undefined">      display: inline-block;</span></span><br><span class="line"><span class="undefined">      line-height: 65px;</span></span><br><span class="line"><span class="undefined">      margin: 0 30px 0 0;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .dui-box-1-middle-right &#123;</span></span><br><span class="line"><span class="undefined">      float: right;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .dui-box-1-middle-right-text &#123;</span></span><br><span class="line"><span class="undefined">      color: #098fd0;</span></span><br><span class="line"><span class="undefined">      font-size: 40px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .dui-box-1-bottom &#123;</span></span><br><span class="line"><span class="undefined">      height: 6px;</span></span><br><span class="line"><span class="undefined">      position: relative;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// 包含 Border1、Decroate4以及Decroate5</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Border1 <span class="keyword">from</span> <span class="string">'../../Border/Border-1/Border-1.html'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Decroate4 <span class="keyword">from</span> <span class="string">'../../Decroate/Decroate-4/Decroate-4.html'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Decroate5 <span class="keyword">from</span> <span class="string">'../../Decroate/Decroate-5/Decroate-5.html'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">    computed: &#123;</span></span><br><span class="line"><span class="javascript">      widthVal: <span class="function">(<span class="params">&#123;width&#125;</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> width || <span class="string">'auto'</span></span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="undefined">    components: &#123;</span></span><br><span class="line"><span class="undefined">      Border1,</span></span><br><span class="line"><span class="undefined">      Decroate4,</span></span><br><span class="line"><span class="undefined">      Decroate5</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>组件的类名统一由<code>dui-&lt;元素类型&gt;-&lt;序号&gt;</code>组成，例如<code>Box-1</code>组件则命名为<code>dui-box-1</code>；</li>
+<li>组件中若包含其它资源，则存放在 <code>Box/Box-1/assets</code> 文件夹下；</li>
+<li>图表组件，则必须包含<code>data</code>，用来作为数据的入口；根据实际情况若有x、y轴，则统一命名为<code>xAxis</code>以及<code>yAxis</code>作为props传入；</li>
+</ol>
+<h2><span id="zu-group">组-group</span></h2><p>类似许多软件中组的概念，建议在开发之前，可以先将页面进行分组，按组进行开发，这样可以保证在调整页面位置时能够整块的进行移动，避免需要一个个的元素进行调整，以及便于区分页面上的元素。<br>group下的文件夹建议使用中文进行命名，可以更好的识别到组的分类，规范为<code>group/福州市平均住院日/index.html</code>，组也是由许多元素组成，对外需要暴露<code>x</code> <code>y</code>属性，如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 福州市平均住院日/index.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"group"</span> <span class="attr">style</span>=<span class="string">"top: &#123;y&#125;px; left: &#123;x&#125;px;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;textStyle&#125;</span> <span class="attr">x</span>=<span class="string">&#123;0&#125;</span> <span class="attr">y</span>=<span class="string">&#123;0&#125;</span>&gt;</span>福州市医院平均住院日<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Decroate2</span> <span class="attr">x</span>=<span class="string">&#123;0&#125;</span> <span class="attr">y</span>=<span class="string">&#123;21&#125;</span> <span class="attr">width</span>=<span class="string">&#123;561&#125;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Decroate3</span> <span class="attr">x</span>=<span class="string">&#123;180&#125;</span> <span class="attr">y</span>=<span class="string">&#123;10&#125;</span> <span class="attr">width</span>=<span class="string">&#123;350&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Box2</span> <span class="attr">text</span>=<span class="string">"三级甲等医院"</span> <span class="attr">value</span>=<span class="string">&#123;9.5&#125;</span> <span class="attr">x</span>=<span class="string">&#123;0&#125;</span> <span class="attr">y</span>=<span class="string">&#123;50&#125;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  .group &#123;</span></span><br><span class="line"><span class="undefined">    position: absolute;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Decroate1 <span class="keyword">from</span> <span class="string">'../../components/Elements/Decroate/Decroate-1/Decroate-1.html'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Decroate2 <span class="keyword">from</span> <span class="string">'../../components/Elements/Decroate/Decroate-2/Decroate-2.html'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Decroate3 <span class="keyword">from</span> <span class="string">'../../components/Elements/Decroate/Decroate-3/Decroate-3.html'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Text <span class="keyword">from</span> <span class="string">'../../components/Elements/Text/Text.html'</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Box2 <span class="keyword">from</span> <span class="string">'../../components/Elements/Box/Box-2/Box-2.html'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> textStyle = &#123;</span></span><br><span class="line"><span class="javascript">		fontSize: <span class="string">'16px'</span>,</span></span><br><span class="line"><span class="javascript">    color: <span class="string">'#0d8fd2'</span>,</span></span><br><span class="line"><span class="javascript">    width: <span class="string">'180px'</span></span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">		data () &#123;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">				textStyle: textStyle</span></span><br><span class="line"><span class="undefined">			&#125;</span></span><br><span class="line"><span class="undefined">		&#125;,</span></span><br><span class="line"><span class="undefined">		components: &#123;</span></span><br><span class="line"><span class="undefined">			Decroate2,</span></span><br><span class="line"><span class="undefined">			Decroate3,</span></span><br><span class="line"><span class="undefined">      Text,</span></span><br><span class="line"><span class="undefined">      Box2</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="kai-fa">开发</span></h2><ol>
+<li>可使用 chrome 的移动设备调试模式，设置好页面宽高，根据页面标尺进行位置锁定；</li>
+<li>建议按照最小的颗粒度进行拆分组件，达到最大程度的复用；</li>
+<li>能够使用svg的部分尽量使用svg；</li>
+<li>当完成一块大屏开发后，需要将成熟稳定的组件进行提取为公共组件，并传到内部npm；</li>
+</ol>
+<h1><span id="todo">TODO</span></h1><ol>
+<li>脚手架</li>
+<li>组件开发脚手架</li>
+<li>屏幕自适应</li>
+<li>构建脚本</li>
+<li>开发界面组件名称显示</li>
+<li>开发界面标尺显示</li>
+<li>数据可视化大屏组件库建立</li>
+<li>数据可视化大屏组件库官网</li>
+</ol>
+<h1><span id="jie-yu">结语</span></h1><p>一切都还没成型，先对一周的工作做一个小结，下一周还有很多的事情需要完成，希望能够尽快将这个规范和流程建立起来。</p>
+
+        </div>
+
+        <div style="text-align:center;border-top: 1px solid #ccc;margin-top: 2em;">
+          <p>下面是我的微信</p>
+          <p>欢迎骚扰</p>
+          <img width="250" src="https://oss.wengwang.me/images/ww_wechat_qrcode.jpg" alt="ww1o01">
+          <!-- <p>当然你也可以选择分享</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACbUlEQVR42u2bQZbCMAxDe/9LM1voYOsr8FjY6qYDpckPD6ey7Lmu5ng0x/P1+z33a/f73o19nR6BHAlJIMi1auwOqprj35iBXAdZDfwOwgmAO4RayLv3AxnICrL6wVcwzoYeyEA6kNXnuiDoFqkWF8hAdgKj29TJwhzRe6yCAjkOUgXBr87H2WIgR0E+xFH98Kmo7YRHFzAvnwnkKkiVIJGEnm7EnbnQzR/IXZBqkhNB3AUF9Upfxg3kKkhHtHYbLzFMlQhWD45A7oVUkzuJVwfimmSB3ANJB3NFhBIkcvN+fh3IVZDkQe8KB7XQ6xtHINdAqsI7TcIc4fGReRrIcZBqYJVs0aYQB6qsPgRyPCQpklMB4CZmSljbkwRyBCQREGqTd8RJNy4SIYEcD3nahESf/aSJRM4byFWQpNHIbTr6JLhkAAVyPKRjnnYC+MTQVw13gdwJSYSG2pyJinGSM9tRC+Q4SNIYTEUsFbRto1JlEARyDaQSto6A7YpTpBmkNcUCuQKSwDhBosajjSnyGwnkOsjOrJLFcpj844dCIFdBUgDS8EYDpwJCFYhAroA83ZhPDAAqRMquv0CugiRBQgwBWixQiw7kXkin6Y0YB47QUIsO5G5IZVy5wHJiID6QQxbI0ZBO8FBzSokS1FASyHWQ6kyNVBo09AEQyH2QpPjjNsKRhnhSlLcqVIEcA+kU5+2INL6EE0EdyLmQzs00kGiyhZuXArkO0i1OdobUaeETO2qBDCQoEBHx0AljabIGMpAX+0e2bwkRaVwFch2katZwEiryHjm//B3IVZDqR64K98QoRcJWiYxAboD8A9UmsQCXQSm7AAAAAElFTkSuQmCC" /> -->
+        </div>
+
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Front-end/Front-end/是的，我打脸了前两篇文章/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+        
+          
+            <div class="nav-next">
+              <a href="/Front-end/Front-end/记一下数据可视化大屏选型的前期/" rel="prev">
+                Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+            </div>
+            
+    </div>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          关于本站
+        </h1>
+        <div class="custom-widget-content">
+          
+            something about me, something about everything.
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Contact
+        </h1>
+        <div class="widget-text">
+          
+                  
+                    <a href="https://github.com/a044161" class="icon icon-github" target="_blank">
+                      github
+                    </a>
+                    
+                    <a href="http://weibo.com/wengwang" class="icon icon-weibo" target="_blank">
+                      weibo
+                    </a>
+                    
+                    <a href="mailto:wengwangjay@126.com" class="icon icon-mail" target="_blank">
+                      mail
+                    </a>
+                    
+                      
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">
+          Search
+        </h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>
+      翁旺 &copy;
+        2019
+    </span>
+    
+      <span class="split">|</span>
+      <span>
+        Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a>
+      </span>
+      
+  </p>
+</footer>
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>
