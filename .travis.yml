@@ -1,21 +1,21 @@
-language: node_js # 设置语言为nodejs
-node_js: 8.11.2 # 选择nodejs版本
-sudo: true # 开启管理员权限
-install: 
-- npm install # 安装依赖文件
+sudo: false
+language: node_js
+node_js:
+  - 10 # use nodejs v10 LTS
+cache: npm
+branches:
+  only:
+    - master # build master branch only
 script:
-- hexo g # 编译hexo
-before_install:
-- openssl aes-256-cbc -K $encrypted_9d99a4372840_key -iv $encrypted_9d99a4372840_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa # 防止登录时的授权询问
-- echo -e "Host $SSH_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-after_success:
-- ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'rm -f $SERVER_PATH' # 删除原目录，因为scp无法执行删除命名
-- scp -r -P $SSH_PORT ./public/* $SSH_USER@$SSH_IP:$SERVER_PATH # 上传文件
-env:
-  global:
-  - secure: ttsHocVexihvvsI2ll/g8tzflk1Imm1ATQhoBGXp+Bz2tAYLp5mnXA/5br6H/fQG9nUhd5Sj8hgn5CgN19ShKeNFuSfp51bakM1lO4u5waNvWqkY/8au0RF9Ukm6TvYV3rIgOdGYzzDZPrUTj3+gNOxIf9/fov2M3NwnJ9d4wqff94iubBSvsmJIPp1SVECKmLIHTTlfrnTjStmTmO6bW9tygYNWAWALKzlroU0+t9JRItcGB9JISgDPLhk1K17z+0ZRj/qeiLQPoaKW+hONw8PWwZcjaiJ3aFl+5GRtd8EKZcDtwPewQvojNeBC4Ehy7h395C2v3tArPG0c4rxrKSx4OvA8djOyG0jHMVZhyeL232Q94ILxBbwKNXaPWvpt8jLgkm+daBuwCPchxbZrrKK+zfGznaWHdf2/iwF3GOcgbdc8/UtMdx/ALYIPXB8GbREqookgna/Q/JywMjzzIa2GyHFLPglNXRrNd34FiTn6Oc0qoT4PAItZ84dho0vBaWjIfh1qgut3ILlyqF/fQY/WihLjsC0frx0LVv5wzmLDvF8jxkkdyhvSE8ZGb23yMhKmvHU2y2H8PbfM3dnNEAYrXaYyXycDW3R76h6PImmjSlIpc7+pb7583VbrGjzR51mlBm0vYc/5w+0Ao8bXSuSuVHJDJ3IgG8KHsFcMUe8=
-  - secure: pOt7Ez83d5Hf/bJ9e1+1FnIat5IVoJdKGthjk26dgiYl/S3SNzqFcUm62wN+DQsNisri8a+a8I4iC3CStTb+xdF0GxLZBC4bZx4NSrCAVWIzxFiRof6nky9WQU+SrS2dtZOV4eIwu6+q3rmiy/flbTRqvi9JVJqbo5POdjOHebT9GRcm87MPBvRDucdoRZqqCfX8p8Z460sP1zrhZmexlXCWARuHTIK4Q1Duo9PFTy87evWWZxuIt3JtuKjvboGQcpbCC9b+LRY++yI9fztZlzCNWNiyikxtM07Zr30c/m9YRRr3ybaf28LLGAe55T5oxGWV2RcZdtHuRGJlsBRk48qzQHAw4Mfwkadi217MtCAIx/CtzqtL+/fDosvUcK1/+4tE6sqXM63rX4aIxwher5C6BbWYrJFc9nBAOTKzWqXuPGGcf0vthLWirjNEd2ZPScu8WwKxNHZjb3+dMT4kb95jpDt8xSF9pVkjEUL1oP+uTSIRkxLWn4yGzXEL75vjm8whUKvCSRsNT2DyB3zUa2hl/usUGgxK6QA7ens+4CN0/olsqStqMke4LK99eFVMGxnjbBU6Td/wC5ZNvjRpe24B3hXWcX4yd/VM7MUS1DHa5c++pejMRsWTnZE+vny5JGWjCRxBpT8orA90aieNXEqg0233CVqlzabQ7OiFL2I=
-  - secure: QS3dlp9zeBNVzaY3b/AXVOWoJtbkP8oeF5iGp4KQL7ZZKpsVMyfK5ZRUXZo0xjOcAQSignUAmvounVMMWRZl0w4pIx/FdId8gYN0eH55yKkM1lyzuudp7HNrZsg6+p6VCR//8Qc4JRulOjhWUbYmVLsPE33PgvNe3UdAvBgwgm/tOf7HNr5NDV/M4kMCR7FhoE0acJrBjxO45p8GrprNAkC7d3tD5dUF4KJysDtVsVWqBtJWGt9Ee1O0kQjn6OqG6pt0iZYumGJ1n6LuCB+frlEbHrQ1uMxsVKeU32yfAGiPZZQz+QF+rP24jAx2IICtB+kLu4ur3O/OhnVagTEJGv3pEJvHSg8URRESdG/wAAq4ivHO+RY0FMKCFMLgoVDlj57t85XmM77LvM0CuubWJ5Fdggh49xLRk6X3QRSglR9okoP3F2aLPz5txGI/CH1JMMIPx2g92wZ1CIn80UduRJu0DstYRng27VaWt5rYCktElscU/doOBGgCWpKg5lVdh1t5tpKkQ+bp0Jpy7gBzmm0WU9WC0fpkCfIlGpWqpHn1+D8k6nx8FPeBBoewoSRmN9WuVx+MDx3+58nemXq09xRpxPZCdoj3p1JeEqLVGRWyrlrdCsN29H85rCzT0eMxWs19hVgEsX1QVeu/Z+HPUPm2xi3J5NvFPcejjb9Otq0=
-  - secure: aVVzLiKqoazxKp5e9LoBT5M8FlFcIh1YE/l03o0Nrchv/LrLu3yNZVYCpjSAxJEteWl1fTmhDwwKB6mLMOg2VApsiwMVKRLFYLzJomDe+9WA8jJUDHnoif3Xg3dxRIKdi4ZgJbcuQaFevGqp9dk4UYRA6Jfn1TtLm1/yTPYR+v5uQVmGkRpKRV6rIa1ZNXkJoMp/bw75JHR/8Fq1Wzne/b1wguRpcxgnuhWCMh7hGUtodjMn95+njCNy8rimIIcHcSqqV7GUqmJTU5z87p7gSsf12nPCiQbpHoj9iGQauV8fD3hTKR0rI90QdC1j+K/zMUaNObGc/6rCm+99SQiz7u5rEwEu1mdx/75UqJ+GT1OLNYDauti05wZ04nAUC3KINtfpIpZDylXRLJMumi/i0giCg74ymD3Vn69zoBMmDKnk19vb4D7dfQL+jf52jYRaA9axT/CYqBne4vjapAo+r5loCxRkuT2r/Hvv2KywS+DJPxjPZvWY+E0AYygbxn6swiPNsnzSRPEvRMK/t/2k8PQaQlYHklvCvQQ9sEZZX1R8u1ZNY503PBLJw7HKy2ZW1usOk1caXshi01ReSpIc5T4+sOLaHzMVpW+n+Rr/4hIsXqQikBeFU9qFR2AXkftaviASJe8yeqdkQP/HzbmPR9gsrWksbTkP4fPofz2/ZXU=
+  - hexo generate # generate static files
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  on:
+    branch: master
+  local-dir: public
+
+
+  b2f98d82c511c643a2aa31e7742bcf75db31ee74
