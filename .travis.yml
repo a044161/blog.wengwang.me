@@ -16,6 +16,3 @@ deploy:
   on:
     branch: master
   local-dir: public
-
-
-  b2f98d82c511c643a2aa31e7742bcf75db31ee74
