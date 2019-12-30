@@ -12,7 +12,7 @@ title: 简历
 
 * 电话：18606933816
 * github：[a044161](https://github.com/a044161)
-* 个人博客：https://blog.wengwang.me/
+* 个人博客：[https://blog.wengwang.me/](https://blog.wengwang.me/)
 * 邮箱：[wengwangjay@126.com](mailto:wengwangjay@126.com)
 
 学历：本科/网络工程/2016 年 6 月  
